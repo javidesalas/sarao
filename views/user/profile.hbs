@@ -1,0 +1,29 @@
+<h1>Hola, esto es profile</h1>
+
+
+<a class="btn btn-dark" href="/user/edit">Editar perfil</a>
+
+
+
+
+
+<h2>form para añadir amigos</h2>
+
+
+<div class="col-md-6">
+
+    <form action="/user/profile/" method="post">
+        <div class="form-group">
+            <label for="add-friends">añade a tus amigos</label>
+            <select name="park" class="form-control" id="park-list">
+                <option>Seleccionar</option>
+                {{#each friends}}
+                <option value="">Primer amigo</option>
+                {{/each}}
+
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-dark">Añadir amigo</button>
+    </form>
+</div>
