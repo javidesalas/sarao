@@ -29,7 +29,7 @@ router.post("/signup", (req, res, next) => {
             const hashPass = bcrypt.hashSync(password, salt)
 
             User.create({ username, password: hashPass })
-                .then(() => res.redirect("/"))
+                .then(() => res.redirect("/user/profile"))
                 .catch(() => res.render("auth/signup", { errorMsg: "No se pudo crear el usuario" }))
         })
         .catch(error => next(error))
@@ -39,7 +39,7 @@ router.post("/signup", (req, res, next) => {
 // User login
 router.get('/login', (req, res) => res.render('auth/login', { "errorMsg": req.flash("error") }))
 router.post('/login', passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/user/profile",
     failureRedirect: "/login",
     failureFlash: true,
     passReqToCallback: true,
