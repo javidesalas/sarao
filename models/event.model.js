@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const saraoSchema = new Schema({
+const eventSchema = new Schema({
     name: { type: String, required: true},
     owner: {
         type: mongoose.Schema.Types.ObjectId,
@@ -22,7 +22,7 @@ const saraoSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
-    userPlus:[{
+    userMinus:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
@@ -35,6 +35,6 @@ const saraoSchema = new Schema({
     timestamps: true
 })
 
-const Sarao = mongoose.model("Sarao", saraoSchema)
+const Event = mongoose.model("Event", eventSchema)
 
-module.exports = Sarao 
+module.exports = Event 
