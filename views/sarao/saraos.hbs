@@ -1,1 +1,22 @@
 <h1>LOS SAAARAAAAOOOS</h1>
+
+<div class="container">
+    {{#each userSaraos}}
+    <div class="row" style="border: 1px solid black;">
+        <div class="col">
+            <img src="{{image}}" alt="{{name}}">
+        </div>
+        <div class="col">
+            <h5>{{name}}</h5>
+            <p><span>{{location}}</span><span>{{startDate}}/{{endDate}} </span></p>
+        </div>
+        <div class="col">
+            {{#each userList}}
+            {{username}}   {{!-- <img src="{{userList.image}}" alt="{{userList.name}}">  --}}
+            {{/each}}  
+        </div>
+    </div>    
+    {{/each}}
+    <a href="/sarao/new" class="btn btn-dark">Nuevo Sarao</a>
+    </div>
+</div>
