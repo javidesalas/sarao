@@ -1,44 +1,57 @@
 <main class="container">
 
 {{!-- //Tiene que recibir el objeto Sarao     --}}
-<form action="/event/new" method="post">
+<form action="/event/new?owner={{activeUser.id}}&sarao={{activeSarao.id}}" method="post">
 
         <div class="form-group">
           <label for="name-event-input">Nombre</label>
           <input name="name" type="text" class="form-control" id="name-event-input">
         </div>
+
+        <div class="form-group">
+          <label for="name-event-input">Creado por {{activeUser.username}} </label>
+          <label for="name-event-input">para {{activeSarao.name}} </label>
+        </div>
+
         <div class="form-group">
           <label for="description-event-input">Descripción</label>
           <input name="description" type="text" class="form-control" id="description-event-input">
         </div>
         <div class="form-group">
-          <label for="startDate-event-input">Fecha</label>
-          <input name="startDate" type="date" class="form-control" id="startDate-event-input">
+          <label for="image-event-input">Imagen</label>
+          <input name="image" type="text" class="form-control" id="image-event-input" default="https://i.ytimg.com/vi/vswPrSxE-3o/maxresdefault.jpg">
         </div>
-         <div class="form-group">
-          <label for="startDate-event-input" value="startDate">Hora</label>
-          <input name="startDate" type="date" class="form-control" id="startDate-event-input">
+
+        <div class="form-group">
+          <label for="startDate-event-input">Fecha y hora</label>
+          <input name="startDate" type="datetime-local" class="form-control" id="startDate-event-input" min="{{this.activeSarao.startDate}}" max="{{this.activeSarao.endDate}}">
         </div>
+
         <div class="form-group">
           <label for="duration-event-input">Duración</label>
-          <input name="duration" type="number" class="form-control" id="duration-event-input">
+          <input name="duration" type="number" class="form-control" id="duration-event-input" value="60">
+        </div>
+
+        <div class="form-group">
+          <label for="location-event-input">Ubicación</label>
+          <input name="location" type="text" class="form-control" id="location-event-input" value="{{activeSarao.location}}">
         </div>
 
         <div class="form-group">
           <label for="karmaPlus-event-input">Karma +</label>
-          <input name="karmaPlus" type="number" class="form-control" id="karmaPlus-event-input">
+          <input name="karmaPlus" type="number" class="form-control" id="karmaPlus-event-input" min="0" value="0">
         </div>
         <div class="form-group">
           <label for="karmaMinus-event-input">Karma -</label>
-          <input name="karmaMinus" type="number" class="form-control" id="karmaMinus-event-input">
+          <input name="karmaMinus" type="number" class="form-control" id="karmaMinus-event-input" max="0" value="0">
         </div>
 
         <div class="form-group">
           <label for="userPlus-list">Currantes</label>
           <select name="userPlus" class="form-control" id="userPlus-list" multiple>
             <option>Seleccionar</option>
-            {{#each this.users}}
-              <option value="{{_id}}">{{name}}</option>
+            {{#each activeSarao.userList}}
+              <option value="{{_id}}">{{username}}</option>
             {{/each}}
           </select>
         </div>
@@ -47,14 +60,14 @@
           <label for="userMinus-list">Disfrutones</label>
           <select name="userMinus" class="form-control" id="userMinus-list" multiple>
             <option>Seleccionar</option>
-            {{#each this.users}}
-              <option value="{{_id}}">{{name}}</option>
+            {{#each activeSarao.userList}}
+              <option value="{{_id}}">{{username}}</option>
             {{/each}}
           </select>
         </div>
 
         <button type="submit" class="btn btn-dark">Crear Evento</button>
-        <a href="/coasters" class="btn btn-dark">Volver</a>
+        <a href="/" class="btn btn-dark">Volver</a>
 
       </form>
 
