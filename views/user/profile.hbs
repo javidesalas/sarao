@@ -1,21 +1,34 @@
-<h1>Hola, esto es profile</h1>
+<div class="container">
+
+    <h1 style="margin-bottom: 40px;">Bienvenido {{dataUser.username}}</h1>
+
+    <div class="row">
 
 
-<a class="btn btn-dark" href="/user/edit">Editar perfil</a>
+        <div class="col-md-3">
+
+            <h4> Nombre: {{dataUser.username}}</h4>
+            <h4>{{dataUser.email}}</h4>
+            <img src="{{dataUser.image}}" alt="{{dataUser.name}}" style="width: 100px;">
+            <p>Karmas: {{dataUser.karma}}</p>
+
+            <a class="btn btn-dark" href="/user/edit">Editar perfil</a>
+
+        </div>
+
+    </div>
+
+
+    <h2 style="margin-top: 40px;">Form para añadir amigos</h2>
 
 
 
 
-
-<h2>form para añadir amigos</h2>
-
-
-<div class="col-md-6">
 
     <form action="/user/profile/" method="post">
         <div class="form-group">
             <label for="add-friends">añade a tus amigos</label>
-            <select name="park" class="form-control" id="park-list">
+            <select name="friends" class="form-control" id="friends-list">
                 <option>Seleccionar</option>
                 {{#each friends}}
                 <option value="">Primer amigo</option>

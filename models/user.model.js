@@ -5,8 +5,14 @@ const userSchema = new Schema({
     username: { type: String, required: true, unique: true, trim: true, lowercase: true }, //match: '/^\S/' 
     email: { type: String, required: false },
     password: { type: String, required: true },
-    image: String,
-    karma: Number,
+    image: {
+        type: String,
+        default: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg'
+    },
+    karma: {
+        type: Number,
+        default: 0
+    },
     activeSarao: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Sarao'
