@@ -1,0 +1,22 @@
+<div class="container">
+
+
+
+    <h1 style="font-weight: 100">Lista de ususarios</h1>
+
+
+    <hr>
+    {{#each allUser}}
+    <form action="/user/addfriend?id={{id}}" method="post">
+        <h4>Nombre: {{username}}</h4>
+        <img src="{{image}}" alt="{{username}}" style="width: 100px;">
+        <p>Karmas: {{karma}}</p>
+        <button type="submit">Añadir</button>
+    </form>
+
+
+    <hr>
+    {{/each}}
+
+
+</div>

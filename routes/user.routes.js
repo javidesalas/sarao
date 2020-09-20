@@ -35,15 +35,27 @@ router.post('/edit', (req, res, next) => {
 
 
 //Form add friend
-router.post('/profile', (req, res, next) => {
 
-    const { friends } = req.body
+router.get('/addfriend', (req, res) => {
 
-    User.findOneAndUpdate({ friends })
-        .populate('friends')
-        .then(() => res.redirect('user/profile'))
+
+    User.find({})
+        .then(allUser => res.render('user/add-friends', { allUser }))
         .catch(err => next(err))
 })
+router.post('/addfriend', (req, res, next) => {
+    let userFriends = req.user.friends
+    const userId = req.user.id
+    console.log(userFriends)
+    const newFriend = req.query.id
+    userFriends.push(newFriend)
+
+
+    User.findByIdAndUpdate(userId, { friends: userFriends })
+        .then(() => res.redirect('/user/addfriend'))
+        .catch(err => next(err))
+})
+
 
 
 
