@@ -2,8 +2,16 @@ const express = require('express')
 const router = express.Router()
 
 const Sarao = require('../models/sarao.model')
+const User = require('../models/user.model')
 
-router.get('/show', (req, res) => res.render('sarao/saraos'))
+router.get('/show', (req, res) => {
+    userId = req.user.id
+    Sarao.find({userList: { $in: [userId]}}) //todos los saraos que tienenal usuario logeado en su userList
+        .populate('userList')
+        .then(userSaraos => res.render('sarao/saraos', {userSaraos}))
+        .catch(err => console.log ('Waddaflurb Morty!!', err))
+   
+})
 
 router.get('/new', (req,res) => res.render('sarao/new-sarao'))
 
