@@ -7,13 +7,13 @@ const Event = require('../models/event.model')
 
 router.get('/new', (req, res) => {
 
-    //res.render('event/new-event')
-    // const {activeSarao} = req.user
+    res.render('event/new-event')
+    const {activeSarao} = req.user
 
-    // Sarao.findById(activeSarao)
-    //     .populate('userList')
-    //     .then(activeSarao => res.render('event/new-event', activeSarao ))
-    //     .catch(err => console.log ('Waddaflurb Morty!!', err))
+    Sarao.findById(activeSarao)
+        .populate('userList')
+        .then(activeSarao => res.render('event/new-event', activeSarao ))
+        .catch(err => console.log ('Waddaflurb Morty!!', err))
 
 })
 
@@ -43,6 +43,14 @@ router.get('/edit/:id', (req, res) => {
 
 })
 
+router.post('/edit/:id', (req, res) => {
+    const eventId = req.params.id 
+    const {name, startDate} = req.body
+
+    Event.findByIdAndUpdate(eventId,{name, startDate})
+            .then(event => res.redirect('/'))
+            .catch(err => console.log ('Waddaflurb Morty!!', err))
+})
+
 module.exports = router
 
-router
