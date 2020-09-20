@@ -1,7 +1,7 @@
 <main class="container">
 
 {{!-- //Tiene que recibir el objeto Sarao     --}}
-<form action="/sarao/new" method="post">
+<form action="/sarao/new?owner={{id}}" method="post">
 
         <div class="form-group">
           <label for="name-sarao-input">Nombre</label>
@@ -31,9 +31,10 @@
         <div class="list-group">
             <label for="userList">Ubicación</label>
             <select id="userList" name="userList" multiple>
-                <option value="value 1">Value 1</option>
-                <option value="value 2">Value 2</option>
-                <option value="value 3">Value 3</option>
+                 <option value="{{id}}">{{username}}</option>
+               {{#each this.friends}}
+                <option value="{{id}}">{{username}}</option>
+               {{/each}}
             </select> 
         </div>
 

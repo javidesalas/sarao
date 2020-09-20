@@ -12,9 +12,10 @@
         </div>
         <div class="col">
             {{#each userList}}
-               <img src="{{userList.image}}" alt="{{userList.name}}"> 
-            {{/each}}    
+            {{username}}   {{!-- <img src="{{userList.image}}" alt="{{userList.name}}">  --}}
+            {{/each}}  
         </div>
+    </div>    
     {{/each}}
     <a href="/sarao/new" class="btn btn-dark">Nuevo Sarao</a>
     </div>

@@ -7,18 +7,42 @@
           <label for="name-sarao-input">Nombre</label>
           <input name="name" value="{{name}}" type="text" class="form-control" id="name-sarao-input">
         </div>
+        
         <div class="form-group">
-          <label for="startDate-sarao-input">Fecha de Inicio</label>
+          <label for="image-sarao-input">Imagen</label>
+          <input name="image" value="{{image}}" type="text" class="form-control" id="name-sarao-input">
+        </div>
+
+        <div class="form-group">
+          <label for="startDate-sarao-input">Empieza</label>
           <input name="startDate" value="{{startDate}}" type="date" class="form-control" id="startDate-sarao-input">
         </div>
-         <div class="form-group">
-          <label for="endDate-sarao-input" value="endDate">Hora</label>
+
+        <div class="form-group">
+          <label for="endDate-sarao-input" value="endDate">Termina</label>
           <input name="endDate" value="{{endDate}}" type="date" class="form-control" id="endDate-sarao-input">
         </div>
+
+        <div class="form-group">
+          <label for="location-sarao-input">Ubicación</label>
+          <input name="location" value="{{location}}"type="text" class="form-control" id="location-sarao-input">
+        </div>     
+
+        <div class="list-group">
+            <label for="userList">Ubicación</label>
+            <select id="userList" name="userList" multiple>
+                <option value="{{this.owner.id}}">{{this.owner.username}}</option>
+               {{#each userList}}
+                <option value="{{id}}">{{username}}</option>
+               {{/each}}
+            </select> 
+        </div>
+
         <div class="form-group">
           <label for="prize-sarao-input">Premio</label>
           <input name="prize" value="{{prize}}" type="text" class="form-control" id="prize-sarao-input">
         </div>
+
          <div class="form-group">
           <label for="punishment-sarao-input">Castigo</label>
           <input name="punishment" value="{{punishment}}" type="text" class="form-control" id="punishment-sarao-input">
