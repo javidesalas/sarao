@@ -5,19 +5,21 @@ const User = require('../models/user.model')
 const Event = require('../models/event.model')
 const Sarao = require('../models/sarao.model')
 
-router.get('/new', (req, res) => {
+const actUser = require('../configs/userLocals.config')
+
+router.get('/new',actUser, (req, res) => {
     const activeSarao = req.user.activeSarao
-    const activeUser = req.user //paso el usuario activo y el sarao activo al renderizado
+    //const activeUser = req.user //paso el usuario activo y el sarao activo al renderizado
 
     console.log (activeSarao)
     Sarao.findById(activeSarao)
         .populate('userList')
-        .then(activeSarao => res.render('event/new-event', activeSarao ))
+        .then(activeSarao => res.render('event/new-event', {activeSarao} ))
         .catch(err => console.log ('Waddaflurb Morty!!', err))
 
 })
 
-router.post('/new', (req, res) => {
+router.post('/new',actUser, (req, res) => {
     const {name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus} = req.body
     const owner = req.query.owner
     const sarao = req.query.sarao
@@ -28,7 +30,7 @@ router.post('/new', (req, res) => {
 
 })
 
-router.get('/details/:id', (req, res) => {
+router.get('/details/:id',actUser, (req, res) => {
     const eventId = req.params.id 
     
         Event.findById(eventId)
@@ -47,7 +49,7 @@ router.get('/details/:id', (req, res) => {
 
 })
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id',actUser, (req, res) => {
     const eventId = req.params.id 
     let activeSarao = req.user.activeSarao
   //paso el usuario activo y el sarao activo al renderizado
@@ -67,7 +69,7 @@ router.get('/edit/:id', (req, res) => {
 
 })
 
-router.post('/edit/:id', (req, res) => {
+router.post('/edit/:id',actUser, (req, res) => {
     const eventId = req.params.id 
     const {name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus} = req.body
 

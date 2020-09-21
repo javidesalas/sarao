@@ -9,9 +9,5 @@ module.exports = app => {
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({ extended: false }))
     app.use(cookieParser())
-    //middleware para tener siempre disponible req.user en las vistas
-    app.use(function (req, res, next) {
-        res.locals.user = req.user
-        next()
-      })
+
 }

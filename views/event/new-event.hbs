@@ -1,7 +1,7 @@
 <main class="container">
 
 {{!-- //Tiene que recibir el objeto Sarao     --}}
-<form action="/event/new?owner={{activeUser.id}}&sarao={{activeSarao.id}}" method="post">
+<form action="/event/new?owner={{actUser.id}}&sarao={{activeSarao.id}}" method="post">
 
         <div class="form-group">
           <label for="name-event-input">Nombre</label>
@@ -9,7 +9,7 @@
         </div>
 
         <div class="form-group">
-          <label for="name-event-input">Creado por {{user.username}} </label>
+          <label for="name-event-input">Creado por {{actUser.username}} </label>
           <label for="name-event-input">para {{activeSarao.name}} </label>
         </div>
 
