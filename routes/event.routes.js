@@ -30,9 +30,18 @@ router.post('/new', (req, res) => {
 
 router.get('/details/:id', (req, res) => {
     const eventId = req.params.id 
-
+    
         Event.findById(eventId)
-            .then(event => res.render('event/detail',event))
+            .populate('owner')
+            .populate('sarao')
+            .populate('userPlus')
+            .populate('userMinus')
+            .then(event => {
+//creo una variable para mostrar o no el botón de edición si es el propietario (y proximamente si es admin)
+                let canEdit 
+                (owner === req.user) ? canEdit = true : canEdit = false
+                res.render('event/detail', {event, canEdit} )
+            })
             .catch(err => console.log ('Waddaflurb Morty!!', err))
 
 })

@@ -1,12 +1,31 @@
-<main>
+<div class="event-card">
+<img src="{{event.image}}" alt="{{event.name}}">
+<hr>
+<h4>{{event.name}}</h4>
+<p><span>{{event.location}}</span><span>{{event.startDate}}. Duración: {{event.duration}}min.</span></p>
+<p>{{event.description}}</p>
+<p>Creado por {{event.owner.username}} en {{event.sarao.name}}</p>
+<p>Karma +: {{event.karmaPlus}}</p> {{!--Aquí el botón de Ajax para req.user apuntarse/quitarse del evento  --}}
+<h6>Currantes</h6>
 <ul>
-<li>Name {{name}}</li>
-<li>{{owner}}</li>
-<li>{{sarao}}</li>
-<li>{{description}}</li>
-<li>{{startdate}}</li>
+    {{#each event.userPlus}}
+        <li>
+            <img src="{{image}}" alt="{{username}}">
+        </li>
+    {{/each}}
 </ul>
+<p>Karma -: {{event.karmaMinus}}</p>{{!--Aquí el botón de Ajax para req.user apuntarse/quitarse del evento  --}}
+<h6>Disfrutones</h6>
+<ul>
+    {{#each event.userPlus}}
+        <li>
+            <img src="{{image}}" alt="{{username}}">
+        </li>
+    {{/each}}
+</ul>
+
 
 <a href="/event/edit/{{id}}">Editar evento</a>
 
-</main>
+
+</div>
