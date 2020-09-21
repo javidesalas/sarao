@@ -1,1 +1,21 @@
-<h1>Hola, estoy es el ranking</h1>
+<div class="container">
+
+    <h2 style="margin-top: 40px;">Lista de amigos</h2>
+
+    <div class="row">
+
+
+        <div class="col-md-3">
+            {{#each karmaUser}}
+            <h4>{{username}} tiene {{karma}} karma.</h4>
+            {{/each}}
+
+
+        </div>
+
+    </div>
+
+    <a class="btn btn-dark" href="/">Volver</a>
+
+
+</div>
