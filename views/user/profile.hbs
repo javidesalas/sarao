@@ -7,8 +7,7 @@
 
         <div class="col-md-3">
 
-            <h4> Nombre: {{dataUser.username}}</h4>
-            <h4>{{dataUser.email}}</h4>
+            <h4> Tu mail: {{dataUser.email}}</h4>
             <img src="{{dataUser.image}}" alt="{{dataUser.name}}" style="width: 100px;">
             <p>Karmas: {{dataUser.karma}}</p>
 
@@ -19,27 +18,56 @@
     </div>
 
 
-    <h2 style="margin-top: 40px;">Form para añadir amigos</h2>
 
 
+</div>
+
+<div class="container">
+
+    <h2 style="margin-top: 40px;">Lista de amigos</h2>
+
+    <div class="row">
 
 
+        <div class="col-md-3">
+            {{#each dataUser.friends}}
+            <h4>{{username}}</h4>
+            {{/each}}
 
-    {{!-- <form action="/user/profile/" method="post">
-        <div class="form-group">
-            <label for="add-friends">añade a tus amigos</label>
-            <select name="friends" class="form-control" id="friends-list">
-                <option>Seleccionar</option>
-                {{#each friends}}
-                <option value="">Primer amigo</option>
-                {{/each}}
 
-            </select>
         </div>
 
-        <button type="submit" class="btn btn-dark">Añadir amigo</button>
-    </form> --}}
+    </div>
+
+    <a class="btn btn-dark" href="/user/addfriend">añadir amigos</a>
+
+
 </div>
 
 
-<a class="btn btn-dark" href="/user/addfriend">añadir amigos</a>
+
+
+
+
+
+<div class="container">
+
+    <h1 style="margin: 40px 0px;">Tus eventos</h1>
+
+    <div class="row">
+
+
+        <div class="col-md-3">
+            {{#each userEvent}}
+            <h4>{{this.name}}</h4>
+            {{/each}}
+
+
+        </div>
+
+    </div>
+
+
+
+
+</div>
