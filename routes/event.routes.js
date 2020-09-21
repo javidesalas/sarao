@@ -30,27 +30,48 @@ router.post('/new', (req, res) => {
 
 router.get('/details/:id', (req, res) => {
     const eventId = req.params.id 
-
+    
         Event.findById(eventId)
-            .then(event => res.render('event/detail',event))
+            .populate('owner')
+            .populate('sarao')
+            .populate('userPlus')
+            .populate('userMinus')
+            .then(event => {
+                //creo una variable para mostrar o no el botón de edición si es el propietario (y proximamente si es admin)
+                let canEdit 
+                (event.owner.id === req.user.id) ? canEdit = true : canEdit = false
+                console.log(canEdit)
+                res.render('event/detail', {event, canEdit} )
+            })
             .catch(err => console.log ('Waddaflurb Morty!!', err))
 
 })
 
 router.get('/edit/:id', (req, res) => {
     const eventId = req.params.id 
+    let activeSarao = req.user.activeSarao
+  //paso el usuario activo y el sarao activo al renderizado
+
+    Sarao.findById(activeSarao)
+        .populate('userList')
+        .then(sarao => activeSarao = sarao)//ojo que pasa de guardar ObjectId a objeto completo
+        .catch(err => console.log ('Waddaflurb Morty!!', err))
 
         Event.findById(eventId)
-            .then(event => res.render('event/edit-event',event))
+            .populate('owner')
+            .populate('sarao')
+            .populate('userPlus')
+            .populate('userMinus')
+            .then(event => res.render('event/edit-event',{event, activeSarao}))
             .catch(err => console.log ('Waddaflurb Morty!!', err))
 
 })
 
 router.post('/edit/:id', (req, res) => {
     const eventId = req.params.id 
-    const {name, startDate} = req.body
+    const {name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus} = req.body
 
-    Event.findByIdAndUpdate(eventId,{name, startDate})
+    Event.findByIdAndUpdate(eventId,{name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus})
             .then(event => res.redirect('/'))
             .catch(err => console.log ('Waddaflurb Morty!!', err))
 })
