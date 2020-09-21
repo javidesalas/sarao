@@ -1,45 +1,57 @@
-
 <main class="container">
 
 {{!-- //Tiene que recibir el objeto Sarao     --}}
-<form action="/event/edit/{{id}}" method="post">
+<form action="/event/edit/{{event.id}}" method="post">
 
         <div class="form-group">
           <label for="name-event-input">Nombre</label>
-          <input name="name" value="{{name}}" type="text" class="form-control" id="name-event-input">
+          <input name="name" type="text" class="form-control" id="name-event-input" value="{{event.name}}">
         </div>
+
+        <div class="form-group">
+          <label for="owner-event-input">Creado por {{event.owner.username}} </label>
+          <label for="sarao-event-input">en {{event.sarao.name}} </label>
+        </div>
+
         <div class="form-group">
           <label for="description-event-input">Descripción</label>
-          <input name="description" value="{{description}}" type="text" class="form-control" id="description-event-input">
+          <input name="description" type="text" class="form-control" id="description-event-input" value="{{event.name}}">
         </div>
         <div class="form-group">
-          <label for="startDate-event-input">Fecha</label>
-          <input name="startDate" value="{{startDate}}" placeholder="{{startDate}}" type="date" class="form-control" id="startDate-event-input">
+          <label for="image-event-input">Imagen</label>
+          <input name="image" type="text" class="form-control" id="image-event-input" value="{{event.image}}">
         </div>
-         <div class="form-group">
-          <label for="startDate-event-input" value="startDate">Hora</label>
-          <input name="startTime" value="{{startTime}}" type="date" class="form-control" id="startDate-event-input">
+
+        <div class="form-group">
+          <label for="startDate-event-input">Fecha y hora</label>
+          <input name="startDate" type="datetime-local" class="form-control" id="startDate-event-input" min="{{activeSarao.startDate}}" max="{{activeSarao.endDate}}" value="{{event.startDate}}">
         </div>
+
         <div class="form-group">
           <label for="duration-event-input">Duración</label>
-          <input name="duration" value="{{duration}}" type="number" class="form-control" id="duration-event-input">
+          <input name="duration" type="number" class="form-control" id="duration-event-input" value={{event.duration}}>
+        </div>
+
+        <div class="form-group">
+          <label for="location-event-input">Ubicación</label>
+          <input name="location" type="text" class="form-control" id="location-event-input" value="{{event.location}}">
         </div>
 
         <div class="form-group">
           <label for="karmaPlus-event-input">Karma +</label>
-          <input name="karmaPlus" value="{{karmaPlus}}" type="number" class="form-control" id="karmaPlus-event-input">
+          <input name="karmaPlus" type="number" class="form-control" id="karmaPlus-event-input" min=0 value={{event.karmaPlus}}>
         </div>
         <div class="form-group">
           <label for="karmaMinus-event-input">Karma -</label>
-          <input name="karmaMinus" value="{{karmaMinus}}" type="number" class="form-control" id="karmaMinus-event-input">
+          <input name="karmaMinus" type="number" class="form-control" id="karmaMinus-event-input" max="0" value={{event.karmaMinus}}>
         </div>
 
         <div class="form-group">
           <label for="userPlus-list">Currantes</label>
-          <select name="userPlus" class="form-control" id="userPlus-list" multiple>
+          <select name="userPlus" class="form-control" id="userPlus-list" multiple >
             <option>Seleccionar</option>
-            {{#each this.users}}
-              <option value="{{_id}}">{{name}}</option>
+            {{#each activeSarao.userList}}
+              <option value="{{_id}}">{{username}}</option>
             {{/each}}
           </select>
         </div>
@@ -48,8 +60,8 @@
           <label for="userMinus-list">Disfrutones</label>
           <select name="userMinus" class="form-control" id="userMinus-list" multiple>
             <option>Seleccionar</option>
-            {{#each this.users}}
-              <option value="{{_id}}">{{name}}</option>
+            {{#each activeSarao.userList}}
+              <option value="{{_id}}">{{username}}</option>
             {{/each}}
           </select>
         </div>
@@ -61,3 +73,7 @@
 
 
 
+</form>
+
+
+</main>
