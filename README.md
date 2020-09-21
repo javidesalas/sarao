@@ -2,8 +2,8 @@
 **Tabla Endpoints**
 |Id|Method|Path|Description
 |--|--|--|--|
-|1|get|/|Carga vista index si está logeado si no carga login|
-|2|get|/login|Llegada al site si no estás logeado. carga vista index.hbs|
+|1|get|/|Carga vista index si está logeado. Si no carga login|
+|2|get|/login|Llegada al site. Si no estás logeado carga vista index.hbs|
 |3|post|/login|Envía form login y carga redirect /|
 |4|get|/signup|Carga vista signup.hbs|
 |5|post|/signup|Envía form signup y redirect vista /|
