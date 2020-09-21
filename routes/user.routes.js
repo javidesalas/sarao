@@ -2,14 +2,28 @@ const express = require("express")
 const router = express.Router()
 
 const User = require("../models/user.model")
+const Event = require('../models/event.model')
+const { populate } = require("../models/user.model")
 
 
 
 // render de vista de perfil
 router.get("/profile", (req, res, next) => {
+
     const userId = req.user.id
+    const queryEvent = { $or: [{ userPlus: { $in: [userId] } }, { userMinus: { $in: [userId] } }] }
+    let userEvent
+
+    Event.find(queryEvent)    // Traemos a profile los eventos que está involucrados el usuario activo. Pendiente traer los saraos que estan activos
+        .populate('userPlus')
+        .populate('userMinus')
+        .then(eventFound => userEvent = eventFound)
+        .catch(err => next(err))
+
+
     User.findById(userId)
-        .then(dataUser => res.render('user/profile', { dataUser }))
+        .populate('friends')
+        .then(dataUser => { console.log(dataUser, userEvent), res.render('user/profile', { dataUser, userEvent }) })
         .catch(err => next(err))
 })
 
