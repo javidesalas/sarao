@@ -18,3 +18,62 @@ h1, h2, h3 {
   padding: 10px 0;
   margin-top: 5px;
 }
+
+.Snavbar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  background-image: linear-gradient(260deg, #162935 0%, #124f1b   100%);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 10px;
+}
+.Snavbar div {
+  display: flex;
+}
+
+.Snavbar i {
+  font-size: 2em;
+}
+
+.Snavbar .main-nav {
+  list-style-type: none;
+  
+  color: rgba(255,255,255,0.8)
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.avatar img{
+  width: 100%;
+  object-fit: cover;
+}
+.main-nav {
+  list-style-type: none;
+  display: flex;
+}
+
+
+.main-nav li {
+  text-align: center;
+  margin: 15px auto;
+}
+.logo {
+  display: inline-block;
+  font-size: 22px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.navbar-toggle {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer; 
+  color: rgba(255,255,255,0.8);
+  font-size: 24px;
+}

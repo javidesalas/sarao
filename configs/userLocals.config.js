@@ -3,7 +3,7 @@
     module.exports =  (req, res, next)=> {
                     if(req.user){
                     console.log('entra middleware!')    
-                    res.locals.activeUser = req.user
+                    res.locals.actUser = req.user
                     }
                     next()
                 }
