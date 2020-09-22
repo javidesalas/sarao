@@ -7,7 +7,7 @@ router.get('/', (req, res) => res.render('index'))
 router.get('/ranking', isLoggedIn, (req, res, next) => {
 
 
-    User.find()
+    User.find().sort({ karma: -1 })
         .then(karmaUser => res.render('ranking', { karmaUser }))
         .catch(err => next(err))
 })

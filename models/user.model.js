@@ -20,7 +20,11 @@ const userSchema = new Schema({
     friends: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    roles: {
+        type: String,
+        enum: ['Admin', 'user']
+    }
 
 }, {
     timestamps: true

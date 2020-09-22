@@ -25,7 +25,7 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
 
     User.findById(userId)
         .populate('friends')
-        .then(dataUser => { console.log(dataUser, userEvent), res.render('user/profile', { dataUser, userEvent }) })
+        .then(dataUser => res.render('user/profile', { dataUser, userEvent }))
         .catch(err => next(err))
 })
 
