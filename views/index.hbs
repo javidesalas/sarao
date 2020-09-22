@@ -1,5 +1,22 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+{{!-- <h1>{{events[0].name}}</h1> --}}
+
+{{#each events}}
+<div class="event-card">
+    <a href="/event/details/{{id}}">
+    <div>
+        <img src="{{image}}" alt="{{name}}">
+    </div>
+    <div>
+        <h5>{{name}} </h5>
+        <p>{{startDate}}</p>
+        <p>{{location}}</p>
+    </div>
+    </a>
+</div>
+{{/each}}
+
+
+
 
 <a class="btn btn-dark" href="sarao/new">nuevo sarao</a>
 
