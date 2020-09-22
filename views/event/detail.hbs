@@ -29,6 +29,9 @@
 {{#if canEdit}}
 <a href="/event/edit/{{event.id}}">Editar evento</a>
 <a href="/event/delete/{{event.id}}">Eliminar evento</a>
+<form action="/event/close/{{event.id}}" method="post">
+    <button type="submit">Cerrar Evento</button>
+</form>
 
 {{/if}}
 

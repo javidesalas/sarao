@@ -9,6 +9,7 @@ const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.rend
 
 
 const actUser = require('../configs/userLocals.config')
+const { findById } = require('../models/user.model')
 
 
 // Vista de nuevo Evento
@@ -86,6 +87,47 @@ router.post('/edit/:id', (req, res) => {
         .then(event => res.redirect('/'))
         .catch(err => console.log('Waddaflurb Morty!!', err))
 })
+
+//Proceso de cierre de evento y return a raiz
+router.post('/close/:id', isLoggedIn, (req, res, next) => {
+    const eventId = req.params.id
+
+    Event.findByIdAndUpdate(eventId, {finished : true})
+        .then(closedEvent => {
+            const kPlusPerUser = closedEvent.karmaPlus / closedEvent.userPlus.length
+            const kMinusPerUser = closedEvent.karmaMinus / closedEvent.userMinus.length
+
+            closedEvent.userPlus.forEach(elm => {
+                const userId = elm.id
+                let newUserKarma = kPlusPerUser
+                User.findById(userId)
+                    .then(userToEdit => {
+                        console.log('PAQUITAAAAAAAAAAAAAAA',userId, userToEdit)
+                        newUserKarma += userToEdit.karma
+                        User.findByIdAndUpdate(userId, {karma: newUserKarma})
+                    })
+                    .then()
+                    .catch(err => console.log('Waddaflurb Morty!!es el update de user Karmas', err))
+            });
+
+            closedEvent.userMinus.forEach(elm => {
+                const userId = elm.id
+                let newUserKarma = kMinusPerUser
+                User.findById(userId)
+                    .then(userToEdit => {newUserKarma += userToEdit.karma
+                        User.findByIdAndUpdate(userId, {karma: newUserKarma})
+                    })
+                    .then()
+                    .catch(err => console.log('Waddaflurb Morty!!es el update de user Karmas', err))
+            });
+            res.redirect('/')         
+        })
+        .catch(err => console.log('Waddaflurb Morty!!', err))
+
+}
+
+
+)
 
 module.exports = router
 
