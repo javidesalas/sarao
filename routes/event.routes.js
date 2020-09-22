@@ -88,48 +88,110 @@ router.post('/edit/:id', (req, res) => {
         .catch(err => console.log('Waddaflurb Morty!!', err))
 })
 
-//Proceso de cierre de evento y return a raiz
+//Proceso de cierre de evento y return a raiz // 
+///////////////////////////////////////////////////////MIRAR PROMISE.ALL
 router.post('/close/:id', isLoggedIn, (req, res, next) => {
     const eventId = req.params.id
 
-    Event.findByIdAndUpdate(eventId, {finished : true})
-        .then(closedEvent => {
-            const kPlusPerUser = closedEvent.karmaPlus / closedEvent.userPlus.length
-            const kMinusPerUser = closedEvent.karmaMinus / closedEvent.userMinus.length
-
-            closedEvent.userPlus.forEach(elm => {
-                const userId = elm
-                let newUserKarma = kPlusPerUser
-                User.findById(userId)
-                    .then(userToEdit => {
-                        console.log('PAQUITAAAAAAAAAAAAAAA',userId, userToEdit)
-                        newUserKarma += userToEdit.karma
-                        User.findByIdAndUpdate(userId, {karma: newUserKarma})
-                    })
-                    .then()
-                    .catch(err => console.log('Waddaflurb Morty!!es el update de user Karmas++', err))
-            });
-
-            closedEvent.userMinus.forEach(elm => {
-                const userId = elm
-                let newUserKarma = kMinusPerUser
-                User.findById(userId)
-                    .then(userToEdit => {
-                        console.log('PAQUITOOOOOOOOOOO',userId, userToEdit)
-                        newUserKarma += userToEdit.karma
-                        User.findByIdAndUpdate(userId, {karma: newUserKarma})
-                    })
-                    .then()
-                    .catch(err => console.log('Waddaflurb Morty!!es el update de user KarmasMinus', err))
-            });
-            res.redirect('/')         
+    function buildQueryString (array) {
+        let queryString = `[`
+        array.forEach( elm => {
+            queryString += `{"_id": "`
+            queryString += elm
+            queryString += `"}, `
         })
-        .catch(err => console.log('Waddaflurb Morty!!', err))
+        queryString = queryString.slice(0, -2)
+        queryString += "]"
+        return JSON.parse(queryString)
+    }
 
-}
+    function splitKarma (listArray, totalKarma) {
+        const splitKarmaPerUser = totalKarma / listArray.length
+        let queryString = buildQueryString (listArray)
+    
+        User.find().or(queryString)
+                    .then(userArray => { 
+                        return User.updateMany ( { _id: { $in: userArray} }, { $inc: { karma: splitKarmaPerUser } })
+                    })
+                    .then (elm => console.log(elm))   
+                    .catch(err => console.log('ERRRRRROOOOOR', err))
+    
+                    
+    }
+
+    Event.findByIdAndUpdate(eventId, {finished : true})
+    .then(closedEvent => {
+        Promise.all([splitKarma(closedEvent.userPlus, closedEvent.karmaPlus), (splitKarma(closedEvent.userMinus, closedEvent.karmaMinus))])
+        .then(elm => {
+            console.log(elm)
+            res.redirect('/')
+        })
+        .catch(err => console.log('&&&&&&&&&&&&&&&&&&', err))
+    })
+    .catch(err => console.log('ERRRRRROOOOOR', err))
+        
+        
+        // Retorna un evento con un array de ids userPlus y otro userMinus
+    //         const kPlusPerUser = closedEvent.karmaPlus / closedEvent.userPlus.length
+    //         const kMinusPerUser = closedEvent.karmaMinus / closedEvent.userMinus.length
+    //         console.log(kPlusPerUser)
+    // // Iteramos el array de ids y creamos la query
+    //         let queryPlusString = buildQueryString (closedEvent.userPlus)
+      
+    // // Hacemos un findById y nos devuelve un array de objetos con Id y Karma
+    //         User.find().or(queryPlusString)
+    //             .then(elmo =>  User.updateMany ( { _id: { $in: elmo} }, { $inc: { karma: kPlusPerUser } })) 
+    //                                 .then (elm => console.log(elm))   
+    //                                 .catch (err => console.log('!!!!!!!!!!!!!', err))  
+                             
+                
+    //             .catch(err => console.log('&&&&&&&&&&&&&&&&&&', err))
+    //     })        
+
+    // Hacemos un updateMany con $inc + karma
+             
+
+})
 
 
-)
+
+
+
+
+
+        //     closedEvent.userPlus.forEach(elm => {
+        //         const userId = elm
+        //         let newUserKarma = kPlusPerUser
+        //         User.findById(userId)
+        //             .then(userToEdit => {
+        //                 console.log('PAQUITAAAAAAAAAAAAAAA',userId, userToEdit)
+        //                 newUserKarma += userToEdit.karma
+        //                 User.findByIdAndUpdate(userId, {karma: newUserKarma})
+        //             })
+        //             .then()
+        //             .catch(err => console.log('Waddaflurb Morty!!es el update de user Karmas++', err))
+        //     });
+
+        //     closedEvent.userMinus.forEach(elm => {
+        //         const userId = elm
+        //         let newUserKarma = kMinusPerUser
+        //         User.findById(userId)
+        //             .then(userToEdit => {
+        //                 console.log('PAQUITOOOOOOOOOOO',userId, userToEdit)
+        //                 newUserKarma += userToEdit.karma
+        //                 User.findByIdAndUpdate(userId, {karma: newUserKarma})
+        //             })
+        //             .then()
+        //             .catch(err => console.log('Waddaflurb Morty!!es el update de user KarmasMinus', err))
+        //     });
+        //     res.redirect('/')         
+        // })
+        // .catch(err => console.log('Waddaflurb Morty!!', err))
+
+
+
+
+
 
 module.exports = router
 

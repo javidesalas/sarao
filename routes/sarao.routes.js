@@ -31,10 +31,17 @@ router.get('/new', actUser, isLoggedIn, (req, res) => {
 })
 // Proceso de nuevo Sarao y return a la vista raiz
 router.post('/new', (req, res) => {
-    const owner = req.query.id
+    let owner = req.user
+    const ownerId = req.query.id
     const { name, image, startDate, endDate, location, userList, prize, punishment } = req.body
+     
     Sarao.create({ name, owner, image, startDate, endDate, location, userList, prize, punishment })
-        .then(() => res.redirect('/'))
+        .then(saraoCreated => {
+            const creatorId = saraoCreated.owner.id
+            return User.findByIdAndUpdate(creatorId, {activeSarao : saraoCreated})
+            })
+        .then(elm =>{ 
+            res.redirect('/')})
         .catch(err => console.log('Waddaflurb Morty!!', err))
 })
 
