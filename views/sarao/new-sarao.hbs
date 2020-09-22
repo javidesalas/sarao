@@ -1,54 +1,54 @@
 <main class="container">
 
-{{!-- //Tiene que recibir el objeto Sarao     --}}
-<form action="/sarao/new?owner={{id}}" method="post">
+  {{!-- //Tiene que recibir el objeto Sarao     --}}
+  <form action="/sarao/new?owner={{actUser.id}}" method="post">
 
-        <div class="form-group">
-          <label for="name-sarao-input">Nombre</label>
-          <input name="name" type="text" class="form-control" id="name-sarao-input">
-        </div>
-        
-        <div class="form-group">
-          <label for="image-sarao-input">Imagen</label>
-          <input name="imagen" type="text" class="form-control" id="name-sarao-input">
-        </div>
+    <div class="form-group">
+      <label for="name-sarao-input">Nombre</label>
+      <input name="name" type="text" class="form-control" id="name-sarao-input">
+    </div>
 
-        <div class="form-group">
-          <label for="startDate-sarao-input">Empieza</label>
-          <input name="startDate" type="datetime-local" class="form-control" id="startDate-sarao-input">
-        </div>
+    <div class="form-group">
+      <label for="image-sarao-input">Imagen</label>
+      <input name="imagen" type="text" class="form-control" id="name-sarao-input">
+    </div>
 
-        <div class="form-group">
-          <label for="endDate-sarao-input" value="endDate">Termina</label>
-          <input name="endDate" type="datetime-local" class="form-control" id="endDate-sarao-input">
-        </div>
+    <div class="form-group">
+      <label for="startDate-sarao-input">Empieza</label>
+      <input name="startDate" type="datetime-local" class="form-control" id="startDate-sarao-input">
+    </div>
 
-        <div class="form-group">
-          <label for="location-sarao-input">Ubicación</label>
-          <input name="location" type="text" class="form-control" id="location-sarao-input">
-        </div>     
+    <div class="form-group">
+      <label for="endDate-sarao-input" value="endDate">Termina</label>
+      <input name="endDate" type="datetime-local" class="form-control" id="endDate-sarao-input">
+    </div>
 
-        <div class="list-group">
-            <label for="userList">Miembros</label>
-            <select id="userList" name="userList" multiple>
-                 <option value="{{id}}">{{username}}</option>
-               {{#each this.friends}}
-                <option value="{{id}}">{{username}}</option>
-               {{/each}}
-            </select> 
-        </div>
+    <div class="form-group">
+      <label for="location-sarao-input">Ubicación</label>
+      <input name="location" type="text" class="form-control" id="location-sarao-input">
+    </div>
 
-        <div class="form-group">
-          <label for="prize-sarao-input">Premio</label>
-          <input name="prize" type="text" class="form-control" id="prize-sarao-input">
-        </div>
-         <div class="form-group">
-          <label for="punishment-sarao-input">Castigo</label>
-          <input name="punishment" type="text" class="form-control" id="punishment-sarao-input">
-        </div>
+    <div class="list-group">
+      <label for="userList">Miembros</label>
+      <select id="userList" name="userList" multiple>
+        <option value="{{id}}">{{username}}</option>
+        {{#each this.friends}}
+        <option value="{{id}}">{{username}}</option>
+        {{/each}}
+      </select>
+    </div>
 
-        <button type="submit" class="btn btn-dark">Crear Sarao</button>
-        <a href="/" class="btn btn-dark">Volver</a>
+    <div class="form-group">
+      <label for="prize-sarao-input">Premio</label>
+      <input name="prize" type="text" class="form-control" id="prize-sarao-input">
+    </div>
+    <div class="form-group">
+      <label for="punishment-sarao-input">Castigo</label>
+      <input name="punishment" type="text" class="form-control" id="punishment-sarao-input">
+    </div>
 
-</form>
+    <button type="submit" class="btn btn-dark">Crear Sarao</button>
+    <a href="/" class="btn btn-dark">Volver</a>
+
+  </form>
 </main>

@@ -33,15 +33,24 @@ router.get("/profile", actUser, isLoggedIn, (req, res, next) => {
 
 
 //render de vista editar user
-router.get('/edit', actUser, isLoggedIn, (req, res) => res.render('user/edit-user'))
+router.get('/edit', actUser, isLoggedIn, (req, res) => {
+
+    const user = req.user
+
+    User.findOne(user)
+        .then(user => res.render('user/edit-user', user))
+        .catch(err => next(err))
+})
+
+
 
 //enviar form edit user y redirect a profile
 router.post('/edit', (req, res, next) => {
 
-    const { username } = req.body
+    const { username, password } = req.body
 
 
-    User.findOneAndUpdate({ username })
+    User.findOneAndUpdate({ username, password })
         .then(() => res.redirect('/user/profile'))
         .catch(err => next(err))
 })

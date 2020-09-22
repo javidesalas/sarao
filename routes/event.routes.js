@@ -48,7 +48,7 @@ router.get('/details/:id', actUser, isLoggedIn, (req, res) => {
         .then(event => {
             //creo una variable para mostrar o no el botón de edición si es el propietario (y proximamente si es admin)
             let canEdit
-            (event.owner.id === req.user.id) ? canEdit = true : canEdit = false
+            (event.owner.id === req.user.id || req.user.role === 'admin') ? canEdit = true : canEdit = false
             console.log(canEdit)
             res.render('event/detail', { event, canEdit })
         })

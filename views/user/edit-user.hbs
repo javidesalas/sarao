@@ -1,14 +1,20 @@
-<h1> {{username}}Aquí podrás cambiar tu nombre</h1>
+<h1> {{username}} aquí podrás cambiar tu nombre y contraseña</h1>
 
 <div class="col-md-6">
 
     <form action="/user/edit" method="POST">
         <div class="form-group">
             <label for="username">Nombre de usuario</label>
-            <input name="username" type="text" class="form-control" id="field1">
+            <input name="username" type="text" class="form-control" id="field1" value="{{username}}">
         </div>
+        <div class="form-group">
+            <label for="password">password</label>
+            <input name="password" type="text" class="form-control" id="field1">
+        </div>
+
         <button type="submit" class="btn btn-dark btn-block btn-lg">Realizar cambios</button>
     </form>
 
 
+    <a class="btn btn-dark" style="margin-top: 40px" href="/user/profile">Volver a perfil</a>
 </div>

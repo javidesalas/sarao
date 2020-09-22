@@ -21,9 +21,9 @@ const userSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
-    roles: {
+    role: {
         type: String,
-        enum: ['Admin', 'user']
+        enum: ['admin', 'user']
     }
 
 }, {
