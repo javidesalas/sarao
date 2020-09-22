@@ -31,13 +31,15 @@
  - Definición del user journey
  - Estructura de vistas y rutas del servidor
  - CRUD básico de Users, Sarao y Events
- - Populación y desarrollo de interdependencias en DB (wip)
-
-**Pendientes.**
- - Desarrollo de las vistas de eventos main y profile
+ ---
+ - Populación y desarrollo de interdependencias en DB
  - Implementar header
  - Botones de navegación
- - Asignación de roles de usuario y condicionar la navegación
+ - Asignación de roles de usuario y condicionar la navegación (wip)
+ - Desarrollo de las vistas de eventos main y profile
+
+**Pendientes.**
+ 
  - Desarrollo de CSS y ajustes de HTML
  - Implementación de API en avatares de usuarios
  - Javascript de cierre de eventos y asignaciones de karma
