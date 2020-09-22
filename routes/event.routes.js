@@ -98,7 +98,7 @@ router.post('/close/:id', isLoggedIn, (req, res, next) => {
             const kMinusPerUser = closedEvent.karmaMinus / closedEvent.userMinus.length
 
             closedEvent.userPlus.forEach(elm => {
-                const userId = elm.id
+                const userId = elm
                 let newUserKarma = kPlusPerUser
                 User.findById(userId)
                     .then(userToEdit => {
@@ -107,18 +107,20 @@ router.post('/close/:id', isLoggedIn, (req, res, next) => {
                         User.findByIdAndUpdate(userId, {karma: newUserKarma})
                     })
                     .then()
-                    .catch(err => console.log('Waddaflurb Morty!!es el update de user Karmas', err))
+                    .catch(err => console.log('Waddaflurb Morty!!es el update de user Karmas++', err))
             });
 
             closedEvent.userMinus.forEach(elm => {
-                const userId = elm.id
+                const userId = elm
                 let newUserKarma = kMinusPerUser
                 User.findById(userId)
-                    .then(userToEdit => {newUserKarma += userToEdit.karma
+                    .then(userToEdit => {
+                        console.log('PAQUITOOOOOOOOOOO',userId, userToEdit)
+                        newUserKarma += userToEdit.karma
                         User.findByIdAndUpdate(userId, {karma: newUserKarma})
                     })
                     .then()
-                    .catch(err => console.log('Waddaflurb Morty!!es el update de user Karmas', err))
+                    .catch(err => console.log('Waddaflurb Morty!!es el update de user KarmasMinus', err))
             });
             res.redirect('/')         
         })
