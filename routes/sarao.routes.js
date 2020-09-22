@@ -5,10 +5,10 @@ const Sarao = require('../models/sarao.model')
 const User = require('../models/user.model')
 
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { errorMsg: 'Desautorizado, inicia sesión para continuar' })
-
+const actUser = require('../configs/userLocals.config')
 
 // Vista de listados de Saraos
-router.get('/show', isLoggedIn, (req, res) => {
+router.get('/show', actUser, isLoggedIn, (req, res) => {
     userId = req.user.id
     Sarao.find({ userList: { $in: [userId] } }) //todos los saraos que tienen al usuario activo en su userList
         .populate('userList')
@@ -19,7 +19,7 @@ router.get('/show', isLoggedIn, (req, res) => {
 
 
 // Vista Nuevo Sarao
-router.get('/new', isLoggedIn, (req, res) => {
+router.get('/new', actUser, isLoggedIn, (req, res) => {
     const userId = req.user.id
 
     User.findById(userId)
@@ -39,7 +39,7 @@ router.post('/new', (req, res) => {
 })
 
 //Vista edit Sarao
-router.get('/edit/:id', isLoggedIn, (req, res) => {
+router.get('/edit/:id', actUser, isLoggedIn, (req, res) => {
     const saraoId = req.params.id
 
     Sarao.findById(saraoId)
