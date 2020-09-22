@@ -6,11 +6,11 @@ const Event = require('../models/event.model')
 const { populate } = require("../models/user.model")
 
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { errorMsg: 'Desautorizado, inicia sesión para continuar' })
-
+const actUser = require('../configs/userLocals.config')
 
 
 // render de vista de perfil
-router.get("/profile", isLoggedIn, (req, res, next) => {
+router.get("/profile", actUser, isLoggedIn, (req, res, next) => {
 
     const userId = req.user.id
     const queryEvent = { $or: [{ userPlus: { $in: [userId] } }, { userMinus: { $in: [userId] } }] }
@@ -33,7 +33,7 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
 
 
 //render de vista editar user
-router.get('/edit', isLoggedIn, (req, res) => res.render('user/edit-user'))
+router.get('/edit', actUser, isLoggedIn, (req, res) => res.render('user/edit-user'))
 
 //enviar form edit user y redirect a profile
 router.post('/edit', (req, res, next) => {
@@ -52,7 +52,7 @@ router.post('/edit', (req, res, next) => {
 
 //Form add friend
 
-router.get('/addfriend', isLoggedIn, (req, res) => {
+router.get('/addfriend', actUser, isLoggedIn, (req, res) => {
 
 
     User.find({})

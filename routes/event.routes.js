@@ -25,7 +25,7 @@ router.get('/new', actUser, isLoggedIn, (req, res) => {
 })
 
 // Proceso de nuevo evento y return a raiz
-router.post('/new', actUser, (req, res) => {
+router.post('/new', (req, res) => {
     const { name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus } = req.body
     const owner = req.query.owner
     const sarao = req.query.sarao
@@ -78,7 +78,7 @@ router.get('/edit/:id', actUser, isLoggedIn, (req, res) => {
 })
 
 //Proceso de edit y return a raiz
-router.post('/edit/:id', actUser, (req, res) => {
+router.post('/edit/:id', (req, res) => {
     const eventId = req.params.id
     const { name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus } = req.body
 
