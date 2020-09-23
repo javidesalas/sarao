@@ -50,7 +50,6 @@ router.get('/details/:id', actUser, isLoggedIn, (req, res) => {
             //creo una variable para mostrar o no el botón de edición si es el propietario (y proximamente si es admin)
             let canEdit
             (event.owner.id === req.user.id || req.user.role === 'admin') ? canEdit = true : canEdit = false
-            console.log(canEdit)
             res.render('event/detail', { event, canEdit })
         })
         .catch(err => console.log('Waddaflurb Morty!!', err))
@@ -92,7 +91,7 @@ router.post('/edit/:id', (req, res) => {
 router.post('/close/:id', isLoggedIn, (req, res, next) => {
     const eventId = req.params.id
 
-    Event.findByIdAndUpdate(eventId, {finished : true})
+    Event.findByIdAndUpdate(eventId, { finished: true })
         .then(closedEvent => {
             const kPlusPerUser = closedEvent.karmaPlus / closedEvent.userPlus.length
             const kMinusPerUser = closedEvent.karmaMinus / closedEvent.userMinus.length
@@ -102,9 +101,9 @@ router.post('/close/:id', isLoggedIn, (req, res, next) => {
                 let newUserKarma = kPlusPerUser
                 User.findById(userId)
                     .then(userToEdit => {
-                        console.log('PAQUITAAAAAAAAAAAAAAA',userId, userToEdit)
+                        console.log('PAQUITAAAAAAAAAAAAAAA', userId, userToEdit)
                         newUserKarma += userToEdit.karma
-                        User.findByIdAndUpdate(userId, {karma: newUserKarma})
+                        User.findByIdAndUpdate(userId, { karma: newUserKarma })
                     })
                     .then()
                     .catch(err => console.log('Waddaflurb Morty!!es el update de user Karmas++', err))
@@ -115,14 +114,14 @@ router.post('/close/:id', isLoggedIn, (req, res, next) => {
                 let newUserKarma = kMinusPerUser
                 User.findById(userId)
                     .then(userToEdit => {
-                        console.log('PAQUITOOOOOOOOOOO',userId, userToEdit)
+                        console.log('PAQUITOOOOOOOOOOO', userId, userToEdit)
                         newUserKarma += userToEdit.karma
-                        User.findByIdAndUpdate(userId, {karma: newUserKarma})
+                        User.findByIdAndUpdate(userId, { karma: newUserKarma })
                     })
                     .then()
                     .catch(err => console.log('Waddaflurb Morty!!es el update de user KarmasMinus', err))
             });
-            res.redirect('/')         
+            res.redirect('/')
         })
         .catch(err => console.log('Waddaflurb Morty!!', err))
 

@@ -59,4 +59,16 @@ router.post('/edit/:id', (req, res) => {
         .catch(err => console.log('Waddaflurb Morty!!', err))
 })
 
+router.post('/delete/:id', (req, res) => {
+
+    const saraoId = req.params.id
+
+
+    Sarao.findByIdAndDelete(saraoId)
+        .then(() => res.redirect('/sarao/show'))
+        .catch(err => console.log('Waddaflurb Morty!!', err))
+
+
+})
+
 module.exports = router

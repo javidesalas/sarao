@@ -71,12 +71,15 @@ router.get('/addfriend', actUser, isLoggedIn, (req, res) => {
 router.post('/addfriend', (req, res, next) => {
     let userFriends = req.user.friends
     const userId = req.user.id
-    console.log(userFriends)
     const newFriend = req.query.id
     userFriends.push(newFriend)
 
+    // if (!userFriends === userId) {
 
-    User.findByIdAndUpdate(userId, { friends: userFriends })
+    // }
+
+
+    User.findByIdAndUpdate(userId, { $addToSet: { friends: userFriends } })
         .then(() => res.redirect('/user/addfriend'))
         .catch(err => next(err))
 })
