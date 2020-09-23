@@ -8,7 +8,7 @@
         </div>
         <div class="col">
             <h5>{{name}}</h5>
-            <p><span>{{location}}</span><span>{{startDate}}/{{endDate}} </span></p>
+            <p><span>{{location}}</span><span>{{startString}}/{{endString}} </span></p>
         </div>
         <div class="col">
             {{#each userList}}
@@ -23,6 +23,7 @@
 </div>
 <div>
     <a href="/sarao/edit/{{id}}" class="btn btn-dark" style="margin-top: 20px;">editar sarao</a>
+    <a href="/sarao/change/{{id}}" class="btn btn-dark" style="margin-top: 20px;">Cambiar a sarao</a>
 </div>
 {{/each}}
 <a href="/sarao/new" class="btn btn-dark" style="margin-top: 40px;">Nuevo Sarao</a>

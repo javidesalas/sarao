@@ -7,10 +7,7 @@ const Sarao = require('../models/sarao.model')
 
 const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : res.render('auth/login', { errorMsg: 'Desautorizado, inicia sesión para continuar' })
 
-
 const actUser = require('../configs/userLocals.config')
-const { findById } = require('../models/user.model')
-
 
 // Vista de nuevo Evento
 router.get('/new', actUser, isLoggedIn, (req, res) => {
@@ -22,19 +19,18 @@ router.get('/new', actUser, isLoggedIn, (req, res) => {
         .populate('userList')
         .then(activeSarao => res.render('event/new-event', { activeSarao }))
         .catch(err => console.log('Waddaflurb Morty!!', err))
-
 })
 
 // Proceso de nuevo evento y return a raiz
 router.post('/new', (req, res) => {
     const { name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus } = req.body
-    const owner = req.query.owner
-    const sarao = req.query.sarao
+    const {owner, sarao} = req.query
+    const dateString = new Date(startDate).toLocaleDateString('es-ES', { weekday: "short", year: "2-digit", month:"2-digit", day:"2-digit"})
+    const timeString = new Date(startDate).toLocaleTimeString('es-ES', {hour: "2-digit", minute: "2-digit"})
 
-    Event.create({ name, owner, sarao, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus })
+    Event.create({ name, owner, sarao, image, description, startDate, dateString, timeString, duration, location, karmaPlus, karmaMinus, userPlus, userMinus })
         .then(() => res.redirect('/'))
         .catch(err => console.log('Waddaflurb Morty!!', err))
-
 })
 
 //Vista de detalles de los eventos
@@ -48,12 +44,12 @@ router.get('/details/:id', actUser, isLoggedIn, (req, res) => {
         .populate('userMinus')
         .then(event => {
             //creo una variable para mostrar o no el botón de edición si es el propietario (y proximamente si es admin)
-            let canEdit
-            (event.owner.id === req.user.id || req.user.role === 'admin') ? canEdit = true : canEdit = false
+            let canEdit = (event.owner.id === req.user.id) ? true : false
+            caneEdit = event.finished ? false : true
+            console.log(canEdit)
             res.render('event/detail', { event, canEdit })
         })
         .catch(err => console.log('Waddaflurb Morty!!', err))
-
 })
 
 //Vista de edit 
@@ -74,7 +70,6 @@ router.get('/edit/:id', actUser, isLoggedIn, (req, res) => {
         .populate('userMinus')
         .then(event => res.render('event/edit-event', { event, activeSarao }))
         .catch(err => console.log('Waddaflurb Morty!!', err))
-
 })
 
 //Proceso de edit y return a raiz
@@ -87,11 +82,21 @@ router.post('/edit/:id', (req, res) => {
         .catch(err => console.log('Waddaflurb Morty!!', err))
 })
 
+router.get('/delete/:id', (req, res) => {
+    const saraoId = req.params.id
+    
+    Event.findByIdAndDelete(saraoId)
+        .then(() => res.redirect('/'))
+        .catch(err => console.log('Waddaflurb Morty!!', err))
+
+
+})
+
 //Proceso de cierre de evento y return a raiz // 
-///////////////////////////////////////////////////////MIRAR PROMISE.ALL
 router.post('/close/:id', isLoggedIn, (req, res, next) => {
     const eventId = req.params.id
 
+<<<<<<< HEAD
     function buildQueryString(array) {
         let queryString = `[`
         array.forEach(elm => {
@@ -105,10 +110,25 @@ router.post('/close/:id', isLoggedIn, (req, res, next) => {
     }
 
     function splitKarma(listArray, totalKarma) {
+=======
+    Event.findByIdAndUpdate(eventId, {finished : true})
+    .then(closedEvent => {
+        Promise.all([splitKarma(closedEvent.userPlus, closedEvent.karmaPlus), (splitKarma(closedEvent.userMinus, closedEvent.karmaMinus))])
+        .then(elm => {
+            console.log(elm)
+            res.redirect('/')
+        })
+        .catch(err => console.log(err))
+    })
+    .catch(err => console.log(err))
+    
+    function splitKarma (listArray, totalKarma) {
+>>>>>>> master
         const splitKarmaPerUser = totalKarma / listArray.length
         let queryString = buildQueryString(listArray)
 
         User.find().or(queryString)
+<<<<<<< HEAD
             .then(userArray => {
                 return User.updateMany({ _id: { $in: userArray } }, { $inc: { karma: splitKarmaPerUser } })
             })
@@ -192,5 +212,26 @@ router.post('/close/:id', isLoggedIn, (req, res, next) => {
 
 
 
+=======
+                    .then(userArray => { 
+                        return User.updateMany ( { _id: { $in: userArray} }, { $inc: { karma: splitKarmaPerUser } })
+                    })
+                    .then (elm => console.log(elm))   
+                    .catch(err => console.log('ERRRRRROOOOOR', err))                       
+    }
+    function buildQueryString (array) {
+        let queryString = `[`
+        array.forEach( elm => {
+            queryString += `{"_id": "`
+            queryString += elm
+            queryString += `"}, `
+        })
+        queryString = queryString.slice(0, -2)
+        queryString += "]"
+        return JSON.parse(queryString)
+    }
+})
+
+>>>>>>> master
 module.exports = router
 

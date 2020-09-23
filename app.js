@@ -16,10 +16,9 @@ require('./configs/middleware.config')(app)
 require('./configs/passport.config')(app)
 require('./configs/views.configs')(app)
 require('./configs/locals.config')(app)
-// require('./configs/userLocals.config')(app)
-
-// const userLocals = require('./configs/userLocals.config')
-// app.use(userLocals)
+//require('./configs/partials.config')(app)
+const hbs = require('hbs')
+hbs.registerPartials('./views/partials')  
 
 // Routes index
 require('./routes')(app)
