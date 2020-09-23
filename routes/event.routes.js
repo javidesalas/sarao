@@ -36,7 +36,14 @@ router.post('/new', (req, res) => {
 //Vista de detalles de los eventos
 router.get('/details/:id', actUser, isLoggedIn, (req, res) => {
     const eventId = req.params.id
-
+    const saraoId = req.user.activeSarao
+    let activeSarao 
+    
+    Sarao.findById(saraoId)
+         .populate('userList')
+         .then(elm => activeSarao = elm)
+         .catch(err => console.log('Waddaflurb Morty!!', err))
+        
     Event.findById(eventId)
         .populate('owner')
         .populate('sarao')
@@ -47,10 +54,30 @@ router.get('/details/:id', actUser, isLoggedIn, (req, res) => {
             let canEdit = (event.owner.id === req.user.id) ? true : false
             caneEdit = event.finished ? false : true
             console.log(canEdit)
-            res.render('event/detail', { event, canEdit })
+            res.render('event/detail', { event, activeSarao, canEdit })
         })
         .catch(err => console.log('Waddaflurb Morty!!', err))
 })
+
+//Add me buttons
+router.get('addme/:list', actUser, isLoggedIn, (req, res) => {
+    const userId = req.user.id
+    const eventId = req.query.id
+    let list = req.params.list
+
+    if (list === plus) {
+        Event.findByIdAndUpdate(eventId, { $addToSet: { userPlus : userId } } )
+                .then(() => res.redirect(`/event/details/${eventId}`))
+                .catch(err => console.log('Waddaflurb Morty!!', err))
+    }
+    else { 
+        Event.findByIdAndUpdate(eventId, { $addToSet: { userMinus : userId } } )
+                .then(() => res.redirect(`/event/details/${eventId}`))
+                .catch(err => console.log('Waddaflurb Morty!!', err))  
+    }
+})
+
+
 
 //Vista de edit 
 router.get('/edit/:id', actUser, isLoggedIn, (req, res) => {

@@ -3,9 +3,9 @@ const characterApi = new CharacterApiHandler()
 // mostrarPersonajes()
 
 
-// document.querySelector('#fetch-all').onclick
+//
 // Creación nuevo personaje
-window.onload = e => {
+document.querySelector('#fetch-all').onclick = e => {
     e.preventDefault()
     console.log('olaaaaaaaa')
 
@@ -18,50 +18,49 @@ window.onload = e => {
 
     function getRickPics() {
 
-        characterApi
+        return characterApi
             .getAllRick()
-            .then(character => getRandomPic(character))
+            .then(character => profilepicture.push(getRandomPic(character)))
             .catch(err => console.log('eeeee', err))
 
     }
 
     function getMortyPics() {
 
-        characterApi
+        return characterApi
             .getAllMorty()
-            .then(character => getRandomPic(character))
+            .then(character => profilepicture.push(getRandomPic(character)))
             .catch(err => console.log('eeeee', err))
 
     }
 
     function getFemalePics() {
 
-        characterApi
+       return characterApi
             .getAllFemale()
-            .then(character => getRandomPic(character))
+            .then(character => profilepicture.push(getRandomPic(character)))
             .catch(err => console.log('eeeee', err))
 
     }
 
     function getMalePics() {
 
-        characterApi
+       return characterApi
             .getAllMale()
-            .then(character => getRandomPic(character))
+            .then(character => profilepicture.push(getRandomPic(character)))
             .catch(err => console.log('eeeee', err))
 
     }
 
     function getUnknownPics() {
 
-        characterApi
+       return characterApi
             .getAllUnknown()
-            .then(character => getRandomPic(character))
+            .then(character => profilepicture.push(getRandomPic(character)))
             .catch(err => console.log('eeeee', err))
-
     }
 
-
+////////////////////////////**************************************
 
     function getRandomPic(character) {
 
@@ -69,25 +68,25 @@ window.onload = e => {
             return elm.image
         })
         let numRandom = Math.floor(Math.random() * imageArr.length)
-
-
-        profilepicture.push(imageArr[numRandom])
-
-
+       
+         return imageArr[numRandom]
     }
-
-    console.log(profilepicture)
-
+    
     Promise.all([getRickPics(), getMortyPics(), getFemalePics(), getFemalePics(), getMalePics(), getUnknownPics()])
-        .then(() => { })
-        .catch(err => console.log('eeeee', err))
-    let newImage = new Image()
+    .then(elm => {
+        for (let i = 0; i < profilepicture.length; i++){
+            let newImage = new Image()
+            newImage.setAttribute('src', `${profilepicture[i]}`)
+            newImage.setAttribute('alt', 'profile picture')
+            document.querySelector('.name').appendChild(newImage)
+        }
+    })
+    .catch( err => console.log('eeeee', err))
+   
+    
 
-    newImage.setAttribute('src', `${profilepicture[0]}`)
-    newImage.setAttribute('alt', 'Cerebro entrenando CSS')
-    document.querySelector('.name').appendChild(newImage)
-
-
+    
+}
 
 
 
@@ -96,7 +95,7 @@ window.onload = e => {
 
 
 
-}
+
 
 
 
