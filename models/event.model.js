@@ -17,6 +17,8 @@ const eventSchema = new Schema({
     },
     description: String,
     startDate: { type: Date, required: true, default: new Date },
+    dateString: String,
+    timeString: String,
     duration: Number, //default 60 minutes
     location: String,
     karmaPlus: { type: Number, min: 0 },
@@ -29,7 +31,7 @@ const eventSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
-    finished: { type: Boolean, default: false}
+    finished: { type: Boolean, default: false},
 
     cssConcurrence: Number,
     cssOverlaps: Boolean

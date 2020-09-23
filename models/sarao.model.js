@@ -9,7 +9,9 @@ const saraoSchema = new Schema({
         ref: 'User'
     },
     startDate: { type: Date, required: true, default: new Date},
+    startString: String,
     endDate: { type: Date, required: true, default: new Date},
+    endString: String,
     location: String,
     userList: [{
         type: mongoose.Schema.Types.ObjectId,

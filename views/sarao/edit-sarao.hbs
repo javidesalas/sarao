@@ -1,38 +1,38 @@
 <main class="container">
 
 {{!-- //Tiene que recibir el objeto Sarao     --}}
-<form action="/sarao/edit/{{id}}" method="post">
+<form action="/sarao/edit/{{sarao.id}}" method="post">
 
         <div class="form-group">
           <label for="name-sarao-input">Nombre</label>
-          <input name="name" value="{{name}}" type="text" class="form-control" id="name-sarao-input">
+          <input name="name" value="{{sarao.name}}" type="text" class="form-control" id="name-sarao-input">
         </div>
         
         <div class="form-group">
           <label for="image-sarao-input">Imagen</label>
-          <input name="image" value="{{image}}" type="text" class="form-control" id="name-sarao-input">
+          <input name="image" value="{{sarao.image}}" type="text" class="form-control" id="name-sarao-input">
         </div>
 
         <div class="form-group">
           <label for="startDate-sarao-input">Empieza</label>
-          <input name="startDate" value="{{startDate}}" type="date" class="form-control" id="startDate-sarao-input">
+          <input name="startDate" value="{{sarao.startDate}}" type="date" class="form-control" id="startDate-sarao-input">
         </div>
 
         <div class="form-group">
           <label for="endDate-sarao-input" value="endDate">Termina</label>
-          <input name="endDate" value="{{endDate}}" type="date" class="form-control" id="endDate-sarao-input">
+          <input name="endDate" value="{{sarao.endDate}}" type="date" class="form-control" id="endDate-sarao-input">
         </div>
 
         <div class="form-group">
           <label for="location-sarao-input">Ubicación</label>
-          <input name="location" value="{{location}}"type="text" class="form-control" id="location-sarao-input">
+          <input name="location" value="{{sarao.location}}"type="text" class="form-control" id="location-sarao-input">
         </div>     
 
         <div class="list-group">
-            <label for="userList">Ubicación</label>
+            <label for="userList">Usuarios</label>
             <select id="userList" name="userList" multiple>
-                <option value="{{this.owner.id}}">{{this.owner.username}}</option>
-               {{#each userList}}
+                <option value="{{actUser.id}}">{{actUser.username}}</option>
+               {{#each user.friends}}
                 <option value="{{id}}">{{username}}</option>
                {{/each}}
             </select> 
@@ -40,12 +40,12 @@
 
         <div class="form-group">
           <label for="prize-sarao-input">Premio</label>
-          <input name="prize" value="{{prize}}" type="text" class="form-control" id="prize-sarao-input">
+          <input name="prize" value="{{sarao.prize}}" type="text" class="form-control" id="prize-sarao-input">
         </div>
 
          <div class="form-group">
           <label for="punishment-sarao-input">Castigo</label>
-          <input name="punishment" value="{{punishment}}" type="text" class="form-control" id="punishment-sarao-input">
+          <input name="punishment" value="{{sarao.punishment}}" type="text" class="form-control" id="punishment-sarao-input">
         </div>
 
         <button type="submit" class="btn btn-dark">Editar Sarao</button>

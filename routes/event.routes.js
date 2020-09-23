@@ -25,8 +25,10 @@ router.get('/new', actUser, isLoggedIn, (req, res) => {
 router.post('/new', (req, res) => {
     const { name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus } = req.body
     const {owner, sarao} = req.query
+    const dateString = new Date(startDate).toLocaleDateString('es-ES', { weekday: "short", year: "2-digit", month:"2-digit", day:"2-digit"})
+    const timeString = new Date(startDate).toLocaleTimeString('es-ES', {hour: "2-digit", minute: "2-digit"})
 
-    Event.create({ name, owner, sarao, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus })
+    Event.create({ name, owner, sarao, image, description, startDate, dateString, timeString, duration, location, karmaPlus, karmaMinus, userPlus, userMinus })
         .then(() => res.redirect('/'))
         .catch(err => console.log('Waddaflurb Morty!!', err))
 })
@@ -80,6 +82,16 @@ router.post('/edit/:id', (req, res) => {
         .catch(err => console.log('Waddaflurb Morty!!', err))
 })
 
+router.get('/delete/:id', (req, res) => {
+    const saraoId = req.params.id
+    
+    Event.findByIdAndDelete(saraoId)
+        .then(() => res.redirect('/'))
+        .catch(err => console.log('Waddaflurb Morty!!', err))
+
+
+})
+
 //Proceso de cierre de evento y return a raiz // 
 router.post('/close/:id', isLoggedIn, (req, res, next) => {
     const eventId = req.params.id
@@ -117,71 +129,7 @@ router.post('/close/:id', isLoggedIn, (req, res, next) => {
         queryString += "]"
         return JSON.parse(queryString)
     }
-
-
-        
-        
-        // Retorna un evento con un array de ids userPlus y otro userMinus
-    //         const kPlusPerUser = closedEvent.karmaPlus / closedEvent.userPlus.length
-    //         const kMinusPerUser = closedEvent.karmaMinus / closedEvent.userMinus.length
-    //         console.log(kPlusPerUser)
-    // // Iteramos el array de ids y creamos la query
-    //         let queryPlusString = buildQueryString (closedEvent.userPlus)
-      
-    // // Hacemos un findById y nos devuelve un array de objetos con Id y Karma
-    //         User.find().or(queryPlusString)
-    //             .then(elmo =>  User.updateMany ( { _id: { $in: elmo} }, { $inc: { karma: kPlusPerUser } })) 
-    //                                 .then (elm => console.log(elm))   
-    //                                 .catch (err => console.log('!!!!!!!!!!!!!', err))  
-                             
-                
-    //             .catch(err => console.log('&&&&&&&&&&&&&&&&&&', err))
-    //     })        
-
-    // Hacemos un updateMany con $inc + karma
-             
-
 })
-
-
-
-
-
-
-
-        //     closedEvent.userPlus.forEach(elm => {
-        //         const userId = elm
-        //         let newUserKarma = kPlusPerUser
-        //         User.findById(userId)
-        //             .then(userToEdit => {
-        //                 console.log('PAQUITAAAAAAAAAAAAAAA',userId, userToEdit)
-        //                 newUserKarma += userToEdit.karma
-        //                 User.findByIdAndUpdate(userId, {karma: newUserKarma})
-        //             })
-        //             .then()
-        //             .catch(err => console.log('Waddaflurb Morty!!es el update de user Karmas++', err))
-        //     });
-
-        //     closedEvent.userMinus.forEach(elm => {
-        //         const userId = elm
-        //         let newUserKarma = kMinusPerUser
-        //         User.findById(userId)
-        //             .then(userToEdit => {
-        //                 console.log('PAQUITOOOOOOOOOOO',userId, userToEdit)
-        //                 newUserKarma += userToEdit.karma
-        //                 User.findByIdAndUpdate(userId, {karma: newUserKarma})
-        //             })
-        //             .then()
-        //             .catch(err => console.log('Waddaflurb Morty!!es el update de user KarmasMinus', err))
-        //     });
-        //     res.redirect('/')         
-        // })
-        // .catch(err => console.log('Waddaflurb Morty!!', err))
-
-
-
-
-
 
 module.exports = router
 
