@@ -8,14 +8,11 @@ class CharacterApiHandler {
     }
 
 
-    getAllRickAlive = () => this.app.get(`/?name=rick&status=alive`)
-    getAllRickDead = () => this.app.get(`/?name=rick&status=dead`)
-    getAllRickUnknown = () => this.app.get(`/?name=rick&status=unknown`)
+    getAllRick = () => this.app.get('/?name=rick')
+    getAllMorty = () => this.app.get('/?name=morty')
+    getAllFemale = () => this.app.get(`/?gender=female`)
+    getAllUnknown = () => this.app.get(`/?gender=unknown`)
+    getAllMale = () => this.app.get('/?gender=male')
 
-    getAllMortyAlive = () => this.app.get(`/?name=morty&status=alive`)
-    getAllMortyDead = () => this.app.get(`/?name=morty&status=dead`)
-    getAllMortyUnknown = () => this.app.get(`/?name=morty&status=unknown`)
 
-    getAllGirlsFemale = () => this.app.get(`/?gender=female`)
-    geAllUnknown = () => this.app.get(`/?gender=unknown`)
-}
+} 
