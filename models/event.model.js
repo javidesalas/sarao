@@ -26,7 +26,7 @@ const eventSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
-    finished: Boolean,
+    finished: { type: Boolean, default: false}
 
     cssConcurrence: Number,
     cssOverlaps: Boolean
