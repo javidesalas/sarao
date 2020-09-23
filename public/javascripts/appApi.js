@@ -1,1 +1,1 @@
-const characterApi = new CharacterApiHandler { }
+// const characterApi = new CharacterApiHandler { }
