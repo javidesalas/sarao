@@ -16,9 +16,13 @@
             {{/each}}
         </div>
     </div>
-    {{/each}}
-    <a href="/sarao/new" class="btn btn-dark">Nuevo Sarao</a>
-
-
 </div>
+<form action="/sarao/delete/{{id}}" method="post">
+    <button type="submit" class="btn btn-dark">Borrar sarao </button>
+</form>
 </div>
+<div>
+    <a href="/sarao/edit/{{id}}" class="btn btn-dark" style="margin-top: 20px;">editar sarao</a>
+</div>
+{{/each}}
+<a href="/sarao/new" class="btn btn-dark" style="margin-top: 40px;">Nuevo Sarao</a>

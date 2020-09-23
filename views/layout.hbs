@@ -8,7 +8,8 @@
   <title>{{title}}</title>
   <script src="https://kit.fontawesome.com/2185146e1e.js" crossorigin="anonymous"></script>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.css" rel="stylesheet"></link>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.css" rel="stylesheet">
+  </link>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
@@ -51,49 +52,51 @@
 
 
 
-<nav class="Snavbar">
-        <span class="navbar-toggle" id="js-navbar-toggle">
-            <i class="fas fa-caret-square-down"></i>
-        </span>
+  <nav class="Snavbar">
+    <span class="navbar-toggle" id="js-navbar-toggle">
+      <i class="fas fa-caret-square-down"></i>
+    </span>
+    {{#if actUser}}
+    <div class="left-nav">
+      <div class="avatar"><img src="{{actUser.image}}" alt="{{actUser.username}}"></div>
+      <div>
+        <h5>{{actUser.username}}</h5>
+        <em>{{actUser.karma}}</em>
+      </div>
+      {{/if}}
+    </div>
+    <div class="middle-nav"><a href="/" class="Sarao logo"><img src="" alt="">
+        <h3>SARAO</h3>
+      </a></div>
+
+    <div class="right-nav">
+      <ul class="main-nav" id="js-menu">
         {{#if actUser}}
-        <div class="left-nav">
-          <div class="avatar"><img src="{{actUser.image}}" alt="{{actUser.username}}"></div>
-          <div>
-            <h5>{{actUser.username}}</h5>
-            <em>{{actUser.karma}}</em>
-          </div>
+        <li>
+          <a href="/user/profile" class="nav-links">Perfil</a>
+        </li>
+        <li>
+          <a href="/sarao/show" class="nav-links">Mis Saraos</a>
+        </li>
+        <li>
+          <a href="/event/new" class="nav-links">Crear Evento</a>
+        </li>
+        <li>
+          <a href="/ranking" class="nav-links">Ranking</a>
+        </li>
         {{/if}}
-        </div>
-        <div class="middle-nav"><a href="/" class="Sarao logo"><img src="" alt=""><h3>SARAO</h3></a></div>
-        
-        <div class="right-nav">
-          <ul class="main-nav" id="js-menu">
-        {{#if actUser}}
-            <li>
-                <a href="/user/profile" class="nav-links">Perfil</a>
-            </li>
-            <li>
-                <a href="/sarao/show" class="nav-links">Mis Saraos</a>
-            </li>
-            <li>
-                <a href="/event/new" class="nav-links">Crear Evento</a>
-            </li>
-            <li>
-                <a href="/ranking" class="nav-links">Ranking</a>
-            </li>
-        {{/if}}
-        {{#unless actUser}}    
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Log In</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/signup">Sign Up</a>
-            </li>
+        {{#unless actUser}}
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Log In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">Sign Up</a>
+        </li>
         {{/unless}}
 
-        </ul>
-      </div>
-    </nav>
+      </ul>
+    </div>
+  </nav>
 
 
 
@@ -138,6 +141,7 @@
   <main class="container">
     {{{body}}}
   </main>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.js"></script>
   <script src="/javascripts/script.js"></script>
 </body>

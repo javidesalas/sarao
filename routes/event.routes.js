@@ -106,7 +106,6 @@ router.post('/close/:id', isLoggedIn, (req, res, next) => {
                     .then (elm => console.log(elm))   
                     .catch(err => console.log('ERRRRRROOOOOR', err))                       
     }
-    
     function buildQueryString (array) {
         let queryString = `[`
         array.forEach( elm => {
