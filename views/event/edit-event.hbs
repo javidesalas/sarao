@@ -46,13 +46,19 @@
           <input name="karmaMinus" type="number" class="form-control" id="karmaMinus-event-input" max="0" value={{event.karmaMinus}}>
         </div>
 
-        <div class="character-picker userPlus">
+        <div class="character-picker character-plus-picker">
             {{#each activeSarao.userList}}
               {{>facecard}}
              
             {{/each}}
         </div>
 
+
+        <div class="character-picker character-minus-picker">
+            {{#each activeSarao.userList}}
+              {{>facecard}}
+            {{/each}}
+        </div>
 
         <div class="form-group character-plus-form">
           <label for="userPlus-list">Currantes</label>
@@ -74,19 +80,25 @@
           </select>
         </div>
 
+        <ul class="character-plus-list">
+          {{#each event.userPlus}}
+            <li>{{id}}</li>
+          {{/each}}
+        </ul>
+
+        <ul class="character-minus-list">
+          {{#each event.userMinus}}
+            <li>{{id}}</li>
+          {{/each}}
+        </ul>
+
         <button type="submit" class="btn btn-dark">Editar Evento</button>
         <a href="/" class="btn btn-dark">Volver</a>
 
       </form>
 
-        <div class="character-picker character-minus-picker">
-            {{#each activeSarao.userList}}
-              {{>facecard}}
-            {{/each}}
-        </div>
-
-</form>
 
 
 </main>
 <script src="/javascripts/facepicker.js"></script>
+<script src="/javascripts/edit.event.picker.js"></script>
