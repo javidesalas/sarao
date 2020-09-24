@@ -24,9 +24,9 @@ router.get('/new', actUser, isLoggedIn, (req, res) => {
 // Proceso de nuevo evento y return a raiz
 router.post('/new', (req, res) => {
     const { name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus } = req.body
-    const {owner, sarao} = req.query
-    const dateString = new Date(startDate).toLocaleDateString('es-ES', { weekday: "short", year: "2-digit", month:"2-digit", day:"2-digit"})
-    const timeString = new Date(startDate).toLocaleTimeString('es-ES', {hour: "2-digit", minute: "2-digit"})
+    const { owner, sarao } = req.query
+    const dateString = new Date(startDate).toLocaleDateString('es-ES', { weekday: "short", year: "2-digit", month: "2-digit", day: "2-digit" })
+    const timeString = new Date(startDate).toLocaleTimeString('es-ES', { hour: "2-digit", minute: "2-digit" })
 
     Event.create({ name, owner, sarao, image, description, startDate, dateString, timeString, duration, location, karmaPlus, karmaMinus, userPlus, userMinus })
         .then(() => res.redirect('/'))
@@ -37,13 +37,13 @@ router.post('/new', (req, res) => {
 router.get('/details/:id', actUser, isLoggedIn, (req, res) => {
     const eventId = req.params.id
     const saraoId = req.user.activeSarao
-    let activeSarao 
-    
+    let activeSarao
+
     Sarao.findById(saraoId)
-         .populate('userList')
-         .then(elm => activeSarao = elm)
-         .catch(err => console.log('Waddaflurb Morty!!', err))
-        
+        .populate('userList')
+        .then(elm => activeSarao = elm)
+        .catch(err => console.log('Waddaflurb Morty!!', err))
+
     Event.findById(eventId)
         .populate('owner')
         .populate('sarao')
@@ -65,29 +65,35 @@ router.get('/countme/:list', actUser, isLoggedIn, (req, res) => {
     let userIdString = req.user.id
     const eventId = req.query.eventId
     let list = req.params.list
-    
+
 
     switch (list) {
+<<<<<<< HEAD
     case ('addplus') :
         Event.findByIdAndUpdate(eventId, { $addToSet: { userPlus : userId } } )
+=======
+        case ('addplus'):
+            console.log('********************************************************************************************************', eventId, typeof (eventId))
+            Event.findByIdAndUpdate(eventId, { $addToSet: { userPlus: userId } })
+>>>>>>> e70b58c8771687d9c89cc74e00ce0433b43d31b5
                 .then(() => res.redirect(`/event/details/${eventId}`))
                 .catch(err => console.log('Waddaflurb Morty!!', err))
-        break
-    case ('addminus') :
-        Event.findByIdAndUpdate(eventId, { $addToSet: { userMinus : [userIdString] } } )
+            break
+        case ('addminus'):
+            Event.findByIdAndUpdate(eventId, { $addToSet: { userMinus: [userIdString] } })
                 .then(() => res.redirect(`/event/details/${eventId}`))
-                .catch(err => console.log('Waddaflurb Morty!!', err))  
-        break
-    case ('retireplus') :
-        Event.findByIdAndUpdate(eventId, { $pullAll: { userPlus : userId } })
+                .catch(err => console.log('Waddaflurb Morty!!', err))
+            break
+        case ('retireplus'):
+            Event.findByIdAndUpdate(eventId, { $pullAll: { userPlus: userId } })
                 .then(() => res.redirect(`/event/details/${eventId}`))
-                .catch(err => console.log('Waddaflurb Morty!!', err))  
-        break
-        case ('retireminus') :
-        Event.findByIdAndUpdate(eventId, { $pullAll: { userMinus : [userIdString] } })
+                .catch(err => console.log('Waddaflurb Morty!!', err))
+            break
+        case ('retireminus'):
+            Event.findByIdAndUpdate(eventId, { $pullAll: { userMinus: [userIdString] } })
                 .then(() => res.redirect(`/event/details/${eventId}`))
-                .catch(err => console.log('Waddaflurb Morty!!', err))      
-        break
+                .catch(err => console.log('Waddaflurb Morty!!', err))
+            break
     }
 })
 
@@ -136,7 +142,7 @@ router.post('/edit/:id', (req, res) => {
 
 router.get('/delete/:id', (req, res) => {
     const saraoId = req.params.id
-    
+
     Event.findByIdAndDelete(saraoId)
         .then(() => res.redirect('/'))
         .catch(err => console.log('Waddaflurb Morty!!', err))
@@ -148,31 +154,31 @@ router.get('/delete/:id', (req, res) => {
 router.post('/close/:id', isLoggedIn, (req, res, next) => {
     const eventId = req.params.id
 
-    Event.findByIdAndUpdate(eventId, {finished : true})
-    .then(closedEvent => {
-        Promise.all([splitKarma(closedEvent.userPlus, closedEvent.karmaPlus), (splitKarma(closedEvent.userMinus, closedEvent.karmaMinus))])
-        .then(elm => {
-            console.log(elm)
-            res.redirect('/')
+    Event.findByIdAndUpdate(eventId, { finished: true })
+        .then(closedEvent => {
+            Promise.all([splitKarma(closedEvent.userPlus, closedEvent.karmaPlus), (splitKarma(closedEvent.userMinus, closedEvent.karmaMinus))])
+                .then(elm => {
+                    console.log(elm)
+                    res.redirect('/')
+                })
+                .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
-    })
-    .catch(err => console.log(err))
-    
-    function splitKarma (listArray, totalKarma) {
+
+    function splitKarma(listArray, totalKarma) {
         const splitKarmaPerUser = totalKarma / listArray.length
-        let queryString = buildQueryString (listArray)
-    
+        let queryString = buildQueryString(listArray)
+
         User.find().or(queryString)
-                    .then(userArray => { 
-                        return User.updateMany ( { _id: { $in: userArray} }, { $inc: { karma: splitKarmaPerUser } })
-                    })
-                    .then (elm => console.log(elm))   
-                    .catch(err => console.log('ERRRRRROOOOOR', err))                       
+            .then(userArray => {
+                return User.updateMany({ _id: { $in: userArray } }, { $inc: { karma: splitKarmaPerUser } })
+            })
+            .then(elm => console.log(elm))
+            .catch(err => console.log('ERRRRRROOOOOR', err))
     }
-    function buildQueryString (array) {
+    function buildQueryString(array) {
         let queryString = `[`
-        array.forEach( elm => {
+        array.forEach(elm => {
             queryString += `{"_id": "`
             queryString += elm
             queryString += `"}, `
