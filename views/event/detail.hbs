@@ -5,7 +5,7 @@
 <p><span>{{event.location}}. </span><span>{{event.dateString}} {{event.timeString}} ({{event.duration}}min.)</span></p>
 <p>{{event.description}}</p>
 <p>Creado por {{event.owner.username}} en {{event.sarao.name}}</p>
-<p>Karma +: {{event.karmaPlus}}<a href="/event/addme/plus?eventId={{event.id}}">Apúntame</a></p> {{!--Aquí el botón de Ajax para req.user apuntarse/quitarse del evento  --}}
+<p>Karma +: {{event.karmaPlus}}<a href="/event/countme/addplus?eventId={{event.id}}">Apúntame</a></p>  <a href="/event/countme/retireplus?eventId={{event.id}}">Quítame</a></p> 
 <h6>Currantes</h6>
 <ul>
     {{#each event.userPlus}}
@@ -16,7 +16,7 @@
         </li> --}}
     {{/each}}
 </ul>
-<p>Karma -: {{event.karmaMinus}} <a href="/event/addme/minus?eventId={{event.id}}">Apúntame</a></p>{{!--Aquí el botón de Ajax para req.user apuntarse/quitarse del evento  --}}
+<p>Karma -: {{event.karmaMinus}} <a href="/event/countme/addminus?eventId={{event.id}}">Apúntame</a></p> <a href="/event/countme/retireminus?eventId={{event.id}}">Quítame</a></p> 
 <h6>Disfrutones</h6>
 <ul>
     {{#each event.userMinus}}

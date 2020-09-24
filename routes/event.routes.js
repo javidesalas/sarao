@@ -60,20 +60,35 @@ router.get('/details/:id', actUser, isLoggedIn, (req, res) => {
 })
 
 //Add me buttons
-router.get('addme/:list', actUser, isLoggedIn, (req, res) => {
-    const userId = req.user.id
-    const eventId = req.query.id
+router.get('/countme/:list', actUser, isLoggedIn, (req, res) => {
+    let userId = req.user
+    let userIdString = req.user.id
+    const eventId = req.query.eventId
     let list = req.params.list
+    
 
-    if (list === plus) {
+    switch (list) {
+    case ('addplus') :
+        console.log('********************************************************************************************************', eventId, typeof(eventId) )
         Event.findByIdAndUpdate(eventId, { $addToSet: { userPlus : userId } } )
                 .then(() => res.redirect(`/event/details/${eventId}`))
                 .catch(err => console.log('Waddaflurb Morty!!', err))
-    }
-    else { 
-        Event.findByIdAndUpdate(eventId, { $addToSet: { userMinus : userId } } )
+        break
+    case ('addminus') :
+        Event.findByIdAndUpdate(eventId, { $addToSet: { userMinus : [userIdString] } } )
                 .then(() => res.redirect(`/event/details/${eventId}`))
                 .catch(err => console.log('Waddaflurb Morty!!', err))  
+        break
+    case ('retireplus') :
+        Event.findByIdAndUpdate(eventId, { $pullAll: { userPlus : userId } })
+                .then(() => res.redirect(`/event/details/${eventId}`))
+                .catch(err => console.log('Waddaflurb Morty!!', err))  
+        break
+        case ('retireminus') :
+        Event.findByIdAndUpdate(eventId, { $pullAll: { userMinus : [userIdString] } })
+                .then(() => res.redirect(`/event/details/${eventId}`))
+                .catch(err => console.log('Waddaflurb Morty!!', err))      
+        break
     }
 })
 
