@@ -11,10 +11,7 @@ document.querySelector('#fetch-all').onclick = e => {
 
     let profilepicture = []
 
-    const inputs = document.querySelectorAll('.name')
-
-
-
+    const characterDiv = document.querySelector('.character-picker')
 
     function getRickPics() {
 
@@ -67,20 +64,42 @@ document.querySelector('#fetch-all').onclick = e => {
     }
     
     Promise.all([getRickPics(), getMortyPics(), getFemalePics(), getFemalePics(), getMalePics(), getUnknownPics()])
-    .then(elm => {
+        .then(elm => {
         for (let i = 0; i < profilepicture.length; i++){
+            
             let newImage = new Image()
             newImage.setAttribute('src', `${profilepicture[i]}`)
             newImage.setAttribute('alt', 'profile picture')
-            document.querySelector('.name').appendChild(newImage)
-        }
-    })
-    .catch( err => console.log('eeeee', err))
-   
-    
+            
+            let imageDiv = document.createElement('div')
+            imageDiv.classList.add('picframe')
+            characterDiv.appendChild(imageDiv)
+            
+            imageDiv.appendChild(newImage)
 
+            characterDiv.classList.remove('hidden')
+
+            
+        }
+           
+            const profileImages = characterDiv.querySelectorAll('.picframe img')
+            console.log(profileImages)
+                profileImages.forEach(elm =>{
+                    elm.onclick = e => { 
+                const urlPic =  e.currentTarget.src
+                console.log(urlPic)
+                document.getElementById('image-input').value = urlPic
+                characterDiv.classList.add('hidden')
+            }
+
+            })     
     
-}
+    })        
+        .catch( err => console.log('eeeee', err))
+   
+ }   
+
+
 
 
 

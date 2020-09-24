@@ -10,6 +10,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
 }
 
 a {
@@ -165,12 +166,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-// Facecard partial
-.picframe img {
-  width: 100px;
-  border-radius: 10%;
-}
-
 
 
 // edit event- character picker
@@ -192,7 +187,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .select {
-
+  box-shadow: 0 0 10px 0 $fluor inset, 0 0 10px 4px $fluor
 }
 
 .hidden{
@@ -347,3 +342,18 @@ h1, h2, h3, h4, h5, h6 {
 .container h1 {
   color: white;
 }
+
+//////////////////////////////////////////////////////
+
+// Facecard partial
+.picframe img {
+  width: 100px;
+  border-radius: 10%;
+}
+
+.image-signup {
+  position: absolute;
+  top: 150px;
+  
+}
+

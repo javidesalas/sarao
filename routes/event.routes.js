@@ -74,12 +74,12 @@ router.get('/countme/:list', actUser, isLoggedIn, (req, res) => {
                 .catch(err => console.log('Waddaflurb Morty!!', err))
             break
         case ('addminus'):
-            Event.findByIdAndUpdate(eventId, { $addToSet: { userMinus: [userIdString] } })
+            Event.findByIdAndUpdate(eventId, { $addToSet: { userMinus: [userId] } })
                 .then(() => res.redirect(`/event/details/${eventId}`))
                 .catch(err => console.log('Waddaflurb Morty!!', err))
             break
         case ('retireplus'):
-            Event.findByIdAndUpdate(eventId, { $pullAll: { userPlus: userId } })
+            Event.findByIdAndUpdate(eventId, { $pullAll: { userPlus: [userIdString] } })
                 .then(() => res.redirect(`/event/details/${eventId}`))
                 .catch(err => console.log('Waddaflurb Morty!!', err))
             break

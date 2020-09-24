@@ -17,7 +17,7 @@
           <label for="description-event-input">Descripción</label>
           <input name="description" type="text" class="form-control" id="description-event-input">
         </div>
-        <div class="form-group">
+        <div class="form-group hidden">
           <label for="image-event-input">Imagen</label>
           <input name="image" type="text" class="form-control" id="image-event-input" default="https://i.ytimg.com/vi/vswPrSxE-3o/maxresdefault.jpg">
         </div>
@@ -46,28 +46,34 @@
           <input name="karmaMinus" type="number" class="form-control" id="karmaMinus-event-input" max="0" value="0">
         </div>
 
-        <div class="form-group">
-          <label for="userPlus-list">Currantes</label>
-          <select name="userPlus" class="form-control" id="userPlus-list" multiple>
-            <option>Seleccionar</option>
-            {{#each activeSarao.userList}}
-              <option value="{{_id}}">{{username}}</option>
-            {{/each}}
-          </select>
-        </div>
+        {{>userList}}
 
-        <div class="form-group">
-          <label for="userMinus-list">Disfrutones</label>
-          <select name="userMinus" class="form-control" id="userMinus-list" multiple>
-            <option>Seleccionar</option>
-            {{#each activeSarao.userList}}
-              <option value="{{_id}}">{{username}}</option>
-            {{/each}}
-          </select>
-        </div>
+        <div class="hidden">
+              <div class="form-group">
+              <label for="userPlus-list">Currantes</label>
+              <select name="userPlus" class="form-control character-plus-form" id="userPlus-list" multiple>
+                <option>Seleccionar</option>
+                {{#each activeSarao.userList}}
+                  <option value="{{_id}}">{{username}}</option>
+                {{/each}}
+              </select>
+            </div>
 
-        <button type="submit" class="btn btn-dark">Crear Evento</button>
-        <a href="/" class="btn btn-dark">Volver</a>
+            <div class="form-group">
+              <label for="userMinus-list">Disfrutones</label>
+              <select name="userMinus" class="form-control character-minus-form" id="userMinus-list" multiple>
+                <option>Seleccionar</option>
+                {{#each activeSarao.userList}}
+                  <option value="{{_id}}">{{username}}</option>
+                {{/each}}
+              </select>
+            </div>
+        </div>
+        
+        <div class="general-bouttons">
+            <button type="submit">Crear Evento</button>
+            <a href="/">Volver</a>
+        </div>
 
       </form>
 
@@ -77,3 +83,5 @@
 
 
 </main>
+<script src="/javascripts/facepicker.js"></script>
+<script src="/javascripts/new.event.picker.js"></script>

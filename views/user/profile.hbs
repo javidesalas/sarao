@@ -1,73 +1,39 @@
 <div class="container">
-
     <h1 style="margin-bottom: 40px;">Bienvenido {{dataUser.username}}</h1>
-
     <div class="row">
-
-
         <div class="col-md-3">
-
             <h4> Tu mail: {{dataUser.email}}</h4>
             <img src="{{dataUser.image}}" alt="{{dataUser.name}}" style="width: 100px;">
             <p>Karma: {{dataUser.karma}}</p>
-
-            <a class="btn btn-dark" href="/user/edit">Editar perfil</a>
-
         </div>
-
     </div>
-
-
-
-
+    <div class="general-bouttons">
+        <a href="/user/edit">Editar perfil</a>
+    </div>
 </div>
-
 <div class="container">
-
     <h2 style="margin-top: 40px;">Lista de amigos</h2>
-
     <div class="row">
-
-
         <div class="col-md-3">
             {{#each dataUser.friends}}
-            <h4>{{username}}</h4>
+            {{>facecard}}
             {{/each}}
         </div>
-
-
-
     </div>
-
-    <a class="btn btn-dark" href="/user/addfriend">añadir amigos</a>
-
-
+    <div class="general-bouttons">
+        <a href="/user/addfriend">añadir amigos</a>
+    </div>
 </div>
-
-
-
-
-
-
-
 <div class="container">
-
-    <h1 style="margin: 40px 0px;">Tus eventos</h1>
-
+    <h2 style="margin: 40px 0px;">Tus eventos</h2>
     <div class="row">
-
-
         <div class="col-md-3">
             {{#each userEvent}}
             <h4>{{this.name}}</h4>
             {{/each}}
-
-
         </div>
-
     </div>
-
-
-
-    <a class="btn btn-dark" href="/logout">Cerrar sesión</a>
+    <div class="general-bouttons">
+        <a href="/logout">Cerrar sesión</a>
+    </div>
 </div>
