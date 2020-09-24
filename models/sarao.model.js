@@ -3,7 +3,10 @@ const Schema = mongoose.Schema
 
 const saraoSchema = new Schema({
     name: { type: String, required: true},
-    image: String,
+    image: {
+        type: String,
+        default: 'https://vignette.wikia.nocookie.net/rickandmorty/images/d/d3/Anatomy_Park_7.png/revision/latest?cb=20160913082442'
+    },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

@@ -1,8 +1,7 @@
-<h1>LOS SAAARAAAAOOOS</h1>
-
-<div class="container">
+<div class="container ">
+    <h1>Tus saraos</h1>
     {{#each userSaraos}}
-    <div class="row" style="border: 1px solid black;">
+    <div class="row sarao">
         <div class="col">
             <img src="{{image}}" alt="{{name}}">
         </div>
@@ -16,14 +15,13 @@
             {{/each}}
         </div>
     </div>
+    <div class="general-bouttons">
+        <form action="/sarao/delete/{{id}}" method="post">
+            <button type="submit">Borrar sarao </button>
+        </form>
+        <a href="/sarao/edit/{{id}}">editar sarao</a>
+        <a href="/sarao/change/{{id}}">Cambiar a sarao</a>
+        {{/each}}
+        <a href="/sarao/new">Nuevo Sarao</a>
+    </div>
 </div>
-<form action="/sarao/delete/{{id}}" method="post">
-    <button type="submit" class="btn btn-dark">Borrar sarao </button>
-</form>
-</div>
-<div>
-    <a href="/sarao/edit/{{id}}" class="btn btn-dark" style="margin-top: 20px;">editar sarao</a>
-    <a href="/sarao/change/{{id}}" class="btn btn-dark" style="margin-top: 20px;">Cambiar a sarao</a>
-</div>
-{{/each}}
-<a href="/sarao/new" class="btn btn-dark" style="margin-top: 40px;">Nuevo Sarao</a>

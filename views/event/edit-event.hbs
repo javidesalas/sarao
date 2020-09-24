@@ -46,52 +46,56 @@
           <input name="karmaMinus" type="number" class="form-control" id="karmaMinus-event-input" max="0" value={{event.karmaMinus}}>
         </div>
 
+       <div class="form-group">
+          <label for="character-plus-picker">Currantes</label>     
         <div class="character-picker character-plus-picker">
             {{#each activeSarao.userList}}
               {{>facecard}}
-             
             {{/each}}
         </div>
+        </div>
 
-
+        <div class="form-group">
+        <label for="character-plus-picker">Disfrutones</label> 
         <div class="character-picker character-minus-picker">
             {{#each activeSarao.userList}}
               {{>facecard}}
             {{/each}}
         </div>
-
-        <div class="form-group character-plus-form">
-          <label for="userPlus-list">Currantes</label>
-          <select name="userPlus" class="form-control" id="userPlus-list" multiple >
-            <option>Seleccionar</option>
-            {{#each activeSarao.userList}}
-              <option value="{{_id}}">{{username}}</option>
-            {{/each}}
-          </select>
         </div>
-        
-        <div class="form-group character-minus-form">
-          <label for="userMinus-list">Disfrutones</label>
-          <select name="userMinus" class="form-control character-minus-form" id="userMinus-list" multiple>
-            <option>Seleccionar</option>
-            {{#each activeSarao.userList}}
-              <option value="{{_id}}">{{username}}</option>
-            {{/each}}
-          </select>
-        </div>
+              <div class="hidden">
+                <div class="form-group character-plus-form">
+                  <label for="userPlus-list">Currantes</label>
+                  <select name="userPlus" class="form-control" id="userPlus-list" multiple >
+                    <option>Seleccionar</option>
+                    {{#each activeSarao.userList}}
+                      <option value="{{_id}}">{{username}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+                
+                <div class="form-group character-minus-form">
+                  <label for="userMinus-list">Disfrutones</label>
+                  <select name="userMinus" class="form-control character-minus-form" id="userMinus-list" multiple>
+                    <option>Seleccionar</option>
+                    {{#each activeSarao.userList}}
+                      <option value="{{_id}}">{{username}}</option>
+                    {{/each}}
+                  </select>
+                </div>
 
-        <ul class="character-plus-list">
-          {{#each event.userPlus}}
-            <li>{{id}}</li>
-          {{/each}}
-        </ul>
+                <ul class="character-plus-list">
+                  {{#each event.userPlus}}
+                    <li>{{id}}</li>
+                  {{/each}}
+                </ul>
 
-        <ul class="character-minus-list">
-          {{#each event.userMinus}}
-            <li>{{id}}</li>
-          {{/each}}
-        </ul>
-
+                <ul class="character-minus-list">
+                  {{#each event.userMinus}}
+                    <li>{{id}}</li>
+                  {{/each}}
+                </ul>
+              </div>
         <button type="submit" class="btn btn-dark">Editar Evento</button>
         <a href="/" class="btn btn-dark">Volver</a>
 

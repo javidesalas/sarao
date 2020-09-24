@@ -13,7 +13,6 @@ function graphicSelector (form, picker, list) {
         if (pic.classList.contains('select')) {
             const picId = pic.title
             form.forEach(elm => {
-                console.log(elm.value, picId)
                 elm.value === picId ? elm.setAttribute('selected','selected') : null
             })
         }
@@ -23,7 +22,6 @@ function graphicSelector (form, picker, list) {
         elm.onclick = e => { 
             e.currentTarget.classList.toggle('select')
             const picId = e.currentTarget.title
-            console.log(picId)
             form.forEach(elm => {             
                 (elm.value === picId) ? elm.setAttribute('selected','selected') : null        
             })                    

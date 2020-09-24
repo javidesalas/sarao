@@ -125,60 +125,6 @@ h1, h2, h3, h4, h5, h6 {
   .nav-links:hover {
     color: white; } }
 
-.boton a {
-  font-size: 24pt;
-  font-weight: bold;
-  background-color: #a1ff0a;
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  border-radius: 50%; }
-
-.boton a:hover {
-  background-color: #B9DFF2; }
-
-.event-card {
-  color: white; }
-
-.event-card p a {
-  font-size: 24pt;
-  font-weight: bold;
-  background-color: #a1ff0a;
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  width: 50px;
-  height: 50px;
-  text-align: center;
-  border-radius: 50%; }
-
-.card {
-  display: flex;
-  flex-direction: row;
-  margin-top: 30px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.5s;
-  width: 222px; }
-
-.card a {
-  text-decoration: none; }
-
-.card img {
-  width: 222px; }
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
-
-.holder {
-  padding: 2px 16px;
-  color: black; }
-
-.buttons-index {
-  margin-top: 30px; }
-
 .picframe img {
   width: 100px;
   border-radius: 10%; }
@@ -196,5 +142,145 @@ h1, h2, h3, h4, h5, h6 {
 
 .character-form {
   display: none; }
+
+.hidden {
+  display: none; }
+
+.general-bouttons {
+  display: flex;
+  flex-direction: row;
+  margin: 40px 0px; }
+
+.general-bouttons a {
+  text-decoration: none;
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid;
+  border-radius: 0.6em;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 10px;
+  font-weight: 100;
+  line-height: 1;
+  margin: 20px;
+  padding: 10px 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  border-color: #a1ff0a;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #a1ff0a inset, 0 0 0 0 #a1ff0a;
+  transition: all 150ms ease-in-out; }
+  .general-bouttons a:hover {
+    box-shadow: 0 0 10px 0 #a1ff0a inset, 0 0 10px 4px #a1ff0a; }
+
+.general-bouttons button {
+  text-decoration: none;
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid;
+  border-radius: 0.6em;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 10px;
+  font-weight: 100;
+  line-height: 1;
+  margin: 20px;
+  padding: 10px 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  border-color: #a1ff0a;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #a1ff0a inset, 0 0 0 0 #a1ff0a;
+  transition: all 150ms ease-in-out; }
+  .general-bouttons button:hover {
+    box-shadow: 0 0 10px 0 #a1ff0a inset, 0 0 10px 4px #a1ff0a; }
+
+.event-card {
+  color: white; }
+
+.event-card img {
+  margin-top: 30px;
+  width: 100%; }
+
+.event-card p {
+  display: flex;
+  flex-direction: row; }
+
+.event-card p a {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 30px;
+  font-weight: 100;
+  line-height: 1;
+  margin: 20px;
+  padding: 6px 13px;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Baloo', sans-serif;
+  font-weight: 700;
+  border-color: #a1ff0a;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #a1ff0a inset, 0 0 0 0 #a1ff0a;
+  transition: all 150ms ease-in-out; }
+  .event-card p a:hover {
+    box-shadow: 0 0 10px 0 #a1ff0a inset, 0 0 10px 4px #a1ff0a; }
+
+.card {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+  width: 222px; }
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+
+.card a {
+  text-decoration: none; }
+
+.card img {
+  width: 222px; }
+
+.holder {
+  padding: 2px 16px;
+  color: black; }
+
+.sarao {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: rgba(0, 0, 0, 0.31);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.344);
+  transition: 0.5s;
+  width: 60%;
+  color: white; }
+  .sarao:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
+
+.sarao img {
+  width: 100%; }
+
+.container h1 {
+  color: white; }
 
 /*# sourceMappingURL=style.css.map */
