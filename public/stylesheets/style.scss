@@ -5,7 +5,10 @@ body {
   font-weight: 200;
   font-family: 'Baloo Tammudu 2', cursive;
   color: $text-color;
-  background-image: linear-gradient(#162935 0%, #124f1b   100%);
+  background: url('https://www.nasa.gov/sites/default/files/thumbnails/image/cats-paw-16.jpg') ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 a {
@@ -194,10 +197,6 @@ h1, h2, h3, h4, h5, h6 {
   text-align:center;
   border-radius: 50%;
 }
-// Facecard partial
-.picframe img {
-  width: 100px;
-}
 // Cards event, view index
 .card {
   display: flex;
@@ -223,4 +222,32 @@ h1, h2, h3, h4, h5, h6 {
 // buttons in view index
 .buttons-index {
   margin-top: 30px;
+  
+}
+
+
+// Facecard partial
+.picframe img {
+  width: 100px;
+  border-radius: 10%;
+}
+
+
+
+// edit event- character picker
+.character-picker {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  background-color: rgba(236, 249, 154, 0.2);
+  border-radius: 20px;
+}
+
+.character-picker div{
+  margin: 5px 10px;
+  text-align: center;
+}
+
+.character-form{
+  display: none;
 }

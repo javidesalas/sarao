@@ -68,14 +68,8 @@ router.get('/countme/:list', actUser, isLoggedIn, (req, res) => {
 
 
     switch (list) {
-<<<<<<< HEAD
     case ('addplus') :
         Event.findByIdAndUpdate(eventId, { $addToSet: { userPlus : userId } } )
-=======
-        case ('addplus'):
-            console.log('********************************************************************************************************', eventId, typeof (eventId))
-            Event.findByIdAndUpdate(eventId, { $addToSet: { userPlus: userId } })
->>>>>>> e70b58c8771687d9c89cc74e00ce0433b43d31b5
                 .then(() => res.redirect(`/event/details/${eventId}`))
                 .catch(err => console.log('Waddaflurb Morty!!', err))
             break
