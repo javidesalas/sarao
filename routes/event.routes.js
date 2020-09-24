@@ -69,7 +69,6 @@ router.get('/countme/:list', actUser, isLoggedIn, (req, res) => {
 
     switch (list) {
     case ('addplus') :
-        console.log('********************************************************************************************************', eventId, typeof(eventId) )
         Event.findByIdAndUpdate(eventId, { $addToSet: { userPlus : userId } } )
                 .then(() => res.redirect(`/event/details/${eventId}`))
                 .catch(err => console.log('Waddaflurb Morty!!', err))
@@ -100,18 +99,29 @@ router.get('/edit/:id', actUser, isLoggedIn, (req, res) => {
     let activeSarao = req.user.activeSarao
     //paso el usuario activo y el sarao activo al renderizado
 
-    Sarao.findById(activeSarao)
-        .populate('userList')
-        .then(sarao => activeSarao = sarao)//ojo que pasa de guardar ObjectId a objeto completo
-        .catch(err => console.log('Waddaflurb Morty!!', err))
+    function p0() { return Sarao.findById(activeSarao)
+            .populate('userList')
+            .then()//ojo que pasa de guardar ObjectId a objeto completo
+            .catch(err => console.log('Waddaflurb Morty!!', err))
+    }
 
-    Event.findById(eventId)
-        .populate('owner')
-        .populate('sarao')
-        .populate('userPlus')
-        .populate('userMinus')
-        .then(event => res.render('event/edit-event', { event, activeSarao }))
-        .catch(err => console.log('Waddaflurb Morty!!', err))
+    function p1() {return Event.findById(eventId)
+            .populate('owner')
+            .populate('sarao')
+            .populate('userPlus')
+            .populate('userMinus')
+            .then()
+            .catch(err => console.log('Waddaflurb Morty!!', err))
+    }
+
+    Promise.all([p0(),p1()])
+            .then(elm => {
+                console.log('***************************el evento',elm[0])
+                console.log('***************************el sarao',elm[1])
+                res.render ('event/edit-event', { activeSarao: elm[0], event: elm[1] })
+            }) 
+
+                .catch(err => console.log('Waddaflurb Morty!!', err))       
 })
 
 //Proceso de edit y return a raiz

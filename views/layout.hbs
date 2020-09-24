@@ -8,95 +8,63 @@
   <title>{{title}}</title>
   <script src="https://kit.fontawesome.com/2185146e1e.js" crossorigin="anonymous"></script>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.css" rel="stylesheet">
-  </link>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.css" rel="stylesheet"> </link>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400;500;600;700;800&family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
 <body>
 
-  {{!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-    <a class="navbar-brand" href="/">{{title}}</a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/user/profile">Perfil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Iniciar sesión</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/signup">Registro</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/logout">Cerrar sesión</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/ranking">Ranking</a>
-        </li>
-
-      </ul>
-    </div>
-  </nav>
- --}}
-
-
-
-  <nav class="Snavbar">
+  <nav class="Snavbar container-fluid sticky-top">
     <span class="navbar-toggle" id="js-navbar-toggle">
-      <i class="fas fa-caret-square-down"></i>
+      SARAO<i class="fas fa-caret-square-down"></i>
     </span>
-    {{#if actUser}}
-    <div class="left-nav">
-      <div class="avatar"><img src="{{actUser.image}}" alt="{{actUser.username}}"></div>
-      <div>
-        <h5>{{actUser.username}}</h5>
-        <em>{{actUser.karma}}</em>
-      </div>
-      {{/if}}
-    </div>
-    <div class="middle-nav"><a href="/" class="Sarao logo"><img src="" alt="">
-        <h3>SARAO</h3>
-      </a></div>
+          {{#if actUser}}
+          <div class="left-nav ">
+              <div class="avatar">
+                <img src="{{actUser.image}}" alt="{{actUser.username}}">
+              </div>
+              <div>
+                  <h5>{{actUser.username}}</h5>
+                  <p>{{actUser.karma}}</p>
+              </div>
+          </div>
+          {{/if}}
+          <div class="middle-nav ">
+            <a href="/" class="Sarao logo">
+              <h3>SARAO</h3>
+            </a>
+          </div> 
+        <div class="right-nav ">
+          <ul class="main-nav" id="js-menu">
+            {{#if actUser}}
+            <li>
+            <a href="/" class="nav-links">Inicio</a>
+            </li>
+            <li>
+              <a href="/user/profile" class="nav-links">Perfil</a>
+            </li>
+            <li>
+              <a href="/sarao/show" class="nav-links">Mis Saraos</a>
+            </li>
+            <li>
+              <a href="/event/new" class="nav-links">Crear Evento</a>
+            </li>
+            <li>
+              <a href="/ranking" class="nav-links">Ranking</a>
+            </li>
+            {{/if}}
+            {{#unless actUser}}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Log In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">Sign Up</a>
+            </li>
+            {{/unless}}
 
-    <div class="right-nav">
-      <ul class="main-nav" id="js-menu">
-        {{#if actUser}}
-        <li>
-          <a href="/user/profile" class="nav-links">Perfil</a>
-        </li>
-        <li>
-          <a href="/sarao/show" class="nav-links">Mis Saraos</a>
-        </li>
-        <li>
-          <a href="/event/new" class="nav-links">Crear Evento</a>
-        </li>
-        <li>
-          <a href="/ranking" class="nav-links">Ranking</a>
-        </li>
-        {{/if}}
-        {{#unless actUser}}
-        <li class="nav-item">
-          <a class="nav-link" href="/login">Log In</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/signup">Sign Up</a>
-        </li>
-        {{/unless}}
-
-      </ul>
-    </div>
-
+          </ul>
+        </div>
   </nav>
 
 
@@ -148,7 +116,7 @@
   <script src="javascripts/api-handler.js"></script>
   <script src="javascripts/appApi.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.26.0/slimselect.min.js"></script>
-  <script src="/javascripts/script.js"></script>
+  <script src="/javascripts/layout.js"></script>
 </body>
 
 </html>

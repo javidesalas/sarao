@@ -18,8 +18,7 @@ document.querySelector('#fetch-all').onclick = e => {
 
     function getRickPics() {
 
-        return characterApi
-            .getAllRick()
+        return characterApi.getAllRick()
             .then(character => profilepicture.push(getRandomPic(character)))
             .catch(err => console.log('eeeee', err))
 
@@ -27,8 +26,7 @@ document.querySelector('#fetch-all').onclick = e => {
 
     function getMortyPics() {
 
-        return characterApi
-            .getAllMorty()
+        return characterApi.getAllMorty()
             .then(character => profilepicture.push(getRandomPic(character)))
             .catch(err => console.log('eeeee', err))
 
@@ -36,8 +34,7 @@ document.querySelector('#fetch-all').onclick = e => {
 
     function getFemalePics() {
 
-       return characterApi
-            .getAllFemale()
+       return characterApi.getAllFemale()
             .then(character => profilepicture.push(getRandomPic(character)))
             .catch(err => console.log('eeeee', err))
 
@@ -54,13 +51,10 @@ document.querySelector('#fetch-all').onclick = e => {
 
     function getUnknownPics() {
 
-       return characterApi
-            .getAllUnknown()
+       return characterApi.getAllUnknown()
             .then(character => profilepicture.push(getRandomPic(character)))
             .catch(err => console.log('eeeee', err))
     }
-
-////////////////////////////**************************************
 
     function getRandomPic(character) {
 

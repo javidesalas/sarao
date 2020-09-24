@@ -1,25 +1,24 @@
-{{!-- <h1>{{events[0].name}}</h1> --}}
-
-{{#each events}}
-<div class="event-card">
-    <a href="/event/details/{{id}}">
-    <div>
-        <img src="{{image}}" alt="{{name}}">
+<div class="row">
+    <div class="col-xl-3">
+        {{#each events}}
+        <div class="card">
+            <a href="/event/details/{{id}}">
+                <div>
+                    <img src="{{image}}" alt="{{name}}">
+                </div>
+                <div class="holder">
+                    <h5>{{name}} </h5>
+                    <p>{{dateString}} {{timeString}}</p>
+                    <p>{{location}}</p>
+                </div>
+            </a>
+        </div>
+        {{/each}}
     </div>
-    <div>
-        <h5>{{name}} </h5>
-        <p>{{dateString}} {{timeString}}</p>
-        <p>{{location}}</p>
-    </div>
-    </a>
 </div>
-{{/each}}
-
-
-
-
-<a class="btn btn-dark" href="sarao/new">nuevo sarao</a>
-
-<a class="btn btn-dark" href="sarao/show">Ver saraos</a>
-
-<a class="btn btn-dark" href="event/new">Nuevo evento</a>
+</div>
+<div class="buttons-index">
+    <a class="btn btn-dark" href="sarao/new">nuevo sarao</a>
+    <a class="btn btn-dark" href="sarao/show">Ver saraos</a>
+    <a class="btn btn-dark" href="event/new">Nuevo evento</a>
+</div>
