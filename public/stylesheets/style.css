@@ -105,7 +105,17 @@ label {
 .navbar-toggle i {
   margin: 10px; }
 
+.main-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+
 @media screen and (min-width: 992px) {
+  .main-container {
+    flex-direction: row;
+    flex-wrap: wrap; }
   .Snavbar {
     display: flex;
     justify-content: space-between;
@@ -157,11 +167,14 @@ label {
 .character-form {
   display: none; }
 
+.event-details {
+  width: 100%;
+  background-color: rgba(0, 50, 0, 0.2);
+  border-radius: 20px;
+  padding: 20px; }
+
 .select {
   box-shadow: 0 0 10px 0 #a1ff0a inset, 0 0 10px 4px #a1ff0a; }
-
-.hidden {
-  display: none; }
 
 .general-bouttons {
   display: flex;
@@ -222,6 +235,11 @@ label {
     box-shadow: 0 0 10px 0 #a1ff0a inset, 0 0 10px 4px #a1ff0a;
     color: #f7faf6; }
 
+.button-container {
+  display: flex;
+  width: 100%;
+  justify-content: center; }
+
 .event-card {
   color: #f7faf6; }
 
@@ -264,7 +282,7 @@ label {
 .card {
   display: flex;
   flex-direction: row;
-  margin-top: 30px;
+  margin: 30px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.5s;
   width: 222px; }
@@ -283,6 +301,9 @@ label {
 
 .sarao {
   display: flex;
+  padding: 10px;
+  padding-top: 10px;
+  border-radius: 20px;
   flex-direction: column;
   text-align: center;
   align-items: center;
@@ -320,5 +341,8 @@ label {
 .image-signup {
   position: absolute;
   top: 150px; }
+
+.hidden {
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */

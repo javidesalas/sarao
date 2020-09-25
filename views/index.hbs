@@ -1,24 +1,26 @@
-<div class="row">
-    <div class="col col-xl-3 ">
-        {{#each events}}
-        <div class="card">
-            <a href="/event/details/{{id}}">
-                <div>
-                    <img src="{{image}}" alt="{{name}}">
-                </div>
-                <div class="holder">
-                    <h5>{{name}} </h5>
-                    <p>{{dateString}} {{timeString}}</p>
-                    <p>{{location}}</p>
-                </div>
-            </a>
+
+<div class="main-container">
+{{#each events}}
+<div class="card">
+    <a href="/event/details/{{id}}">
+        <div>
+            <img src="{{image}}" alt="{{name}}">
         </div>
-        {{/each}}
-    </div>
+        <div class="holder">
+            <h5>{{name}} </h5>
+            <p>{{dateString}} {{timeString}}</p>
+            <p>{{location}}</p>
+        </div>
+    </a>
 </div>
+{{/each}}
 </div>
+
+</div>
+<div class="button-container">
 <div class="general-bouttons">
     <a href="sarao/new">nuevo sarao</a>
     <a href="sarao/show">Ver saraos</a>
     <a href="event/new">Nuevo evento</a>
+</div>
 </div>

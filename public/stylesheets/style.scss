@@ -135,9 +135,23 @@ label {
 
 }
 
+.main-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 
 
 @media screen and (min-width: 992px) {
+  .main-container {
+    flex-direction: row;
+    flex-wrap: wrap
+  }
+
+
   .Snavbar {
       display: flex;
       justify-content: space-between;
@@ -208,13 +222,18 @@ label {
   display: none;
 }
 
+.event-details {
+  width: 100%;
+  background-color: rgba(#003200, 0.2);
+  border-radius: 20px;
+  padding: 20px
+
+}
+
 .select {
   box-shadow: 0 0 10px 0 $fluor inset, 0 0 10px 4px $fluor
 }
 
-.hidden{
-  display: none
-}
 
 
 ////////////////////////////////////////////////////////////////////////////////////@at-root
@@ -281,6 +300,12 @@ label {
   }
 }
 // envet card view detail event
+.button-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
 .event-card {
   color: $text-color;
 }
@@ -325,7 +350,7 @@ label {
 .card {
   display: flex;
   flex-direction: row;
-  margin-top: 30px;
+  margin: 30px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.5s;
   width: 222px;
@@ -346,6 +371,9 @@ label {
 //Sarao view 
 .sarao {
   display: flex;
+  padding: 10px;
+  padding-top:10px;
+  border-radius: 20px;
   flex-direction: column;
   text-align: center;
   align-items: center;
@@ -396,4 +424,9 @@ label {
   top: 150px;
   
 }
+
+.hidden{
+  display: none
+}
+
 

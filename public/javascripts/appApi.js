@@ -5,9 +5,11 @@ const characterApi = new CharacterApiHandler()
 
 //
 // Creación nuevo personaje
-document.querySelector('#fetch-all').onclick = e => {
+const picButton = document.querySelector('#fetch-all')
+picButton.onclick = e => {
     e.preventDefault()
-    console.log('olaaaaaaaa')
+    picButton.style.display='none'
+    
 
     let profilepicture = []
 
@@ -90,6 +92,8 @@ document.querySelector('#fetch-all').onclick = e => {
                 console.log(urlPic)
                 document.getElementById('image-input').value = urlPic
                 characterDiv.classList.add('hidden')
+                
+
             }
 
             })     

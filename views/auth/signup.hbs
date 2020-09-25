@@ -22,6 +22,10 @@
                 <input name="password" type="password" class="form-control" id="field2">
                 <small class="form-text text-muted">Nunca compartas tu contraseña</small>
             </div>
+            {{#if errorMsg}}
+            <div id="errorMsg">{{{errorMsg}}}</div>
+            {{/if}}
+        <p>¿Tienes cuenta? <a href="/login">¡Inicia sesión!</a></p>
 
            <div class="general-bouttons large">
                 <button id="fetch-all">Elige tu avatar</button>
@@ -30,13 +34,9 @@
             </div>
             </div>
 
-            {{#if errorMsg}}
-            <div id="errorMsg">{{{errorMsg}}}</div>
-            {{/if}}
         </form>
 
 
-        <p>¿Tienes cuenta? <a href="/login">¡Inicia sesión!</a></p>
     </div>
 
 </div>

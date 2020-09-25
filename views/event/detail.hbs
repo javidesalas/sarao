@@ -3,11 +3,16 @@
         <div class="event-card">
             <img src="{{event.image}}" alt="{{event.name}}">
             <hr>
+
+            <div class="event-details">
             <h4>{{event.name}}</h4>
-            <p><span>{{event.location}}. </span><span>{{event.dateString}} {{event.timeString}}
+            <p><span>{{event.location}}. &nbsp - &nbsp</span><span>{{event.dateString}} {{event.timeString}}
                     ({{event.duration}}min.)</span></p>
             <p>{{event.description}}</p>
             <p>Creado por {{event.owner.username}} en {{event.sarao.name}}</p>
+            </div>
+
+            
             <div class="karmaPlus">
                 <h6>Karma +: {{event.karmaPlus}}</h6>
                 <h6>Currantes</h6>
