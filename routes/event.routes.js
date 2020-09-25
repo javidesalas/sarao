@@ -23,10 +23,11 @@ router.get('/new', actUser, isLoggedIn, (req, res) => {
 
 // Proceso de nuevo evento y return a raiz
 router.post('/new', (req, res) => {
-    const { name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus } = req.body
+    let { name, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus } = req.body
     const { owner, sarao } = req.query
-    const dateString = new Date(startDate).toLocaleDateString('es-ES', { weekday: "short", year: "2-digit", month: "2-digit", day: "2-digit" })
-    const timeString = new Date(startDate).toLocaleTimeString('es-ES', { hour: "2-digit", minute: "2-digit" })
+    startDate === "" ? startDate = new Date : new Date(startDate)
+    const dateString = startDate.toLocaleDateString('es-ES', { weekday: "short", year: "2-digit", month: "2-digit", day: "2-digit" })
+    const timeString = startDate.toLocaleTimeString('es-ES', { hour: "2-digit", minute: "2-digit" })
 
     Event.create({ name, owner, sarao, description, startDate, dateString, timeString, duration, location, karmaPlus, karmaMinus, userPlus, userMinus })
         .then(() => res.redirect('/'))
@@ -116,8 +117,6 @@ router.get('/edit/:id', actUser, isLoggedIn, (req, res) => {
 
     Promise.all([p0(),p1()])
             .then(elm => {
-                console.log('***************************el evento',elm[0])
-                console.log('***************************el sarao',elm[1])
                 res.render ('event/edit-event', { activeSarao: elm[0], event: elm[1] })
             }) 
 
@@ -127,8 +126,8 @@ router.get('/edit/:id', actUser, isLoggedIn, (req, res) => {
 //Proceso de edit y return a raiz
 router.post('/edit/:id', (req, res) => {
     const eventId = req.params.id
-    const { name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus } = req.body
-
+    let { name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus } = req.body
+    //startDate === "" ? startDate = new Date : new Date(startDate)
     Event.findByIdAndUpdate(eventId, { name, image, description, startDate, duration, location, karmaPlus, karmaMinus, userPlus, userMinus })
         .then(event => res.redirect('/'))
         .catch(err => console.log('Waddaflurb Morty!!', err))

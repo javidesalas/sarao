@@ -35,9 +35,11 @@ router.post('/new', (req, res) => {
     const ownerId = req.query.id
     let { name, image, startDate, endDate, location, userList, prize, punishment } = req.body
     
+    startDate === "" ? startDate = new Date : new Date(startDate)
+    endDate === "" ? endDate = new Date : new Date(endDate)
     const timeOptions =  { weekday: "short", year: "2-digit", month:"2-digit", day:"2-digit", hour: "2-digit", minute: "2-digit"}
-    const startString = new Date(startDate).toLocaleString(undefined, timeOptions)
-    const endString = new Date(endDate).toLocaleString('es-ES', timeOptions)
+    const startString = startDate.toLocaleString(undefined, timeOptions)
+    const endString = endDate.toLocaleString('es-ES', timeOptions)
      
     Sarao.create({ name, owner, image, startDate, startString, endDate, endString, location, userList, prize, punishment })
         .then(saraoCreated => {
@@ -70,7 +72,11 @@ router.get('/edit/:id', actUser, isLoggedIn, (req, res) => {
 // Proceso de edit Sarao y return a la vista de lista de Saraos
 router.post('/edit/:id', (req, res) => {
     const saraoId = req.params.id
-    const { name, startDate, endDate, userList,prize, punishment } = req.body
+    let { name, startDate, endDate, userList,prize, punishment } = req.body
+    
+    startDate === "" ? startDate = new Date : null
+    endDate === "" ? endDate = new Date : null
+    
     const timeOptions =  { weekday: "short", year: "2-digit", month:"2-digit", day:"2-digit", hour: "2-digit", minute: "2-digit"}
     const startString = startDate.toLocaleString('es-ES', timeOptions)
     const endString = endDate.toLocaleString('es-ES', timeOptions)
