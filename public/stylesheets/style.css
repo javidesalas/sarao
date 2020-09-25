@@ -1,11 +1,13 @@
 body {
   font-weight: 200;
   font-family: 'Baloo Tammudu 2', cursive;
+  kerning: 300;
   color: #f7faf6;
   background: url("https://www.nasa.gov/sites/default/files/thumbnails/image/cats-paw-16.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center; }
+  background-position: center;
+  padding-bottom: 100px; }
 
 a {
   color: #f7faf6;
@@ -13,11 +15,19 @@ a {
 
 a:hover {
   color: #ecf99a;
-  text-decoration: none; }
+  text-decoration: none;
+  font-size: 1em; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Orbitron', sans-serif;
-  font-weight: 200; }
+  font-weight: 200;
+  text-shadow: 1px 1px 1px #003200; }
+
+h1, h2 {
+  margin: 20px 0; }
+
+label {
+  text-shadow: 1px 1px 1px #003200; }
 
 #errorMsg {
   background-color: red;
@@ -31,9 +41,8 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: space-between;
   font-size: 18px;
-  background-image: linear-gradient(#162935 0%, #124f1b 100%);
+  background-image: linear-gradient(#162935 0%, #003200 100%);
   padding-top: 30px;
-  margin-top: 10px;
   margin-bottom: 50px;
   height: 80px;
   font-family: 'Orbitron', sans-serif; }
@@ -67,7 +76,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: right;
   color: #f7faf6;
   list-style-type: none;
-  background-color: rgba(7, 89, 24, 0.8); }
+  background-color: rgba(0, 50, 0, 0.8); }
 
 .active {
   display: block; }
@@ -129,12 +138,21 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  background-color: rgba(236, 249, 154, 0.2);
-  border-radius: 20px; }
+  background-color: rgba(0, 50, 0, 0.2);
+  border-radius: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px; }
 
 .character-picker div {
   margin: 5px 10px;
   text-align: center; }
+
+.character-picker p {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 200;
+  text-shadow: 1px 1px 1px #003200;
+  display: flex;
+  justify-content: center; }
 
 .character-form {
   display: none; }
@@ -167,14 +185,15 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 10px;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 700;
   border-color: #a1ff0a;
-  color: #fff;
+  color: #030;
   box-shadow: 0 0 40px 40px #a1ff0a inset, 0 0 0 0 #a1ff0a;
   transition: all 150ms ease-in-out; }
   .general-bouttons a:hover {
-    box-shadow: 0 0 10px 0 #a1ff0a inset, 0 0 10px 4px #a1ff0a; }
+    box-shadow: 0 0 10px 0 #a1ff0a inset, 0 0 10px 4px #a1ff0a;
+    color: #f7faf6; }
 
 .general-bouttons button {
   text-decoration: none;
@@ -193,17 +212,18 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 10px;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 700;
   border-color: #a1ff0a;
-  color: #fff;
+  color: #030;
   box-shadow: 0 0 40px 40px #a1ff0a inset, 0 0 0 0 #a1ff0a;
   transition: all 150ms ease-in-out; }
   .general-bouttons button:hover {
-    box-shadow: 0 0 10px 0 #a1ff0a inset, 0 0 10px 4px #a1ff0a; }
+    box-shadow: 0 0 10px 0 #a1ff0a inset, 0 0 10px 4px #a1ff0a;
+    color: #f7faf6; }
 
 .event-card {
-  color: white; }
+  color: #f7faf6; }
 
 .event-card img {
   margin-top: 30px;
@@ -235,7 +255,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Baloo', sans-serif;
   font-weight: 700;
   border-color: #a1ff0a;
-  color: #fff;
+  color: #f7faf6;
   box-shadow: 0 0 40px 40px #a1ff0a inset, 0 0 0 0 #a1ff0a;
   transition: all 150ms ease-in-out; }
   .event-card p a:hover {
@@ -281,6 +301,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .container h1 {
   color: white; }
+
+.general-bouttons.profile {
+  margin: 0;
+  justify-content: center; }
+
+.general-bouttons.profile button {
+  margin-top: 0;
+  margin-bottom: 10px; }
+
+.profilepic {
+  padding: 20px; }
 
 .picframe img {
   width: 100px;

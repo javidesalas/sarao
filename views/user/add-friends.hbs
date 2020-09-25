@@ -6,17 +6,20 @@
 
 
     <hr>
+    <div class="character-picker">
     {{#each allUser}}
     <form action="/user/addfriend?id={{id}}" method="post">
-        <h4>Nombre: {{username}}</h4>
-        <img src="{{image}}" alt="{{username}}" style="width: 100px;">
-        <p>Karmas: {{karma}}</p>
-        <button type="submit">Añadir</button>
+        {{>facecard}}
+        <p>{{karma}}</p>
+        <div  class="general-bouttons profile" >
+            <button type="submit">Añadir</button>
+        </div>
     </form>
 
 
     <hr>
     {{/each}}
+    </div>
 
     {{#if errorUserMsg}}
     <div id="errorMsg">{{{errorUserMsg}}}</div>

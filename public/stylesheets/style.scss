@@ -1,15 +1,20 @@
 $text-color: rgb(247, 250, 246);
 $text-color-hover: rgb(236, 249, 154);
 $fluor:#a1ff0a;
+$button-color: #030;
+$dark: #003200;
 
 body {
   font-weight: 200;
   font-family: 'Baloo Tammudu 2', cursive;
+  kerning: 300;
   color: $text-color;
   background: url('https://www.nasa.gov/sites/default/files/thumbnails/image/cats-paw-16.jpg') ;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
+  padding-bottom: 100px;
 
 }
 
@@ -21,15 +26,24 @@ a {
 a:hover {
   color: $text-color-hover;
   text-decoration: none;
+  font-size: 1em
   
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Orbitron', sans-serif;
   font-weight: 200;
+  text-shadow: 1px 1px 1px   $dark
 }
 
+h1, h2 {
+  margin: 20px 0
+}
 
+label {
+  text-shadow: 1px 1px 1px   $dark
+  
+}
 
 #errorMsg {
   background-color: red;
@@ -44,9 +58,9 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: space-between;
   font-size: 18px;
-  background-image: linear-gradient(#162935 0%, #124f1b   100%);
+  background-image: linear-gradient(#162935 0%, $dark  100%);
   padding-top: 30px;
-  margin-top: 10px;
+  
   margin-bottom: 50px;
   height: 80px;
   font-family: 'Orbitron', sans-serif;
@@ -84,9 +98,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: right;
   color: $text-color;
   list-style-type: none;
-  background-color: rgba($color: #075918, $alpha: 0.8);
-
-
+  background-color: rgba($color: $dark, $alpha: 0.8);
   
 }
 
@@ -173,13 +185,23 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  background-color: rgba(236, 249, 154, 0.2);
+  background-color: rgba(#003200, 0.2);
   border-radius: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .character-picker div{
   margin: 5px 10px;
   text-align: center;
+}
+
+.character-picker p {
+  font-family:'Orbitron', sans-serif;
+  font-weight: 200;
+  text-shadow: 1px 1px 1px   $dark;
+  display: flex;
+  justify-content: center;
 }
 
 .character-form{
@@ -201,7 +223,7 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: row;
   margin: 40px 0px;
 }
-.general-bouttons a {
+.general-bouttons a{
   text-decoration: none;
   box-sizing: border-box;
   appearance: none;
@@ -218,14 +240,15 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 10px;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 700;
   border-color: $fluor;
-  color: #fff;
+  color: $button-color;
   box-shadow: 0 0 40px 40px $fluor inset, 0 0 0 0 $fluor;
   transition: all 150ms ease-in-out;
   &:hover {
     box-shadow: 0 0 10px 0 $fluor inset, 0 0 10px 4px $fluor;
+    color: $text-color
   }
 }
 // button form
@@ -246,19 +269,20 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 10px;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 700;
   border-color: $fluor;
-  color: #fff;
+  color:$button-color;
   box-shadow: 0 0 40px 40px $fluor inset, 0 0 0 0 $fluor;
   transition: all 150ms ease-in-out;
   &:hover {
     box-shadow: 0 0 10px 0 $fluor inset, 0 0 10px 4px $fluor;
+    color: $text-color;
   }
 }
 // envet card view detail event
 .event-card {
-  color: white;
+  color: $text-color;
 }
 .event-card img {
   margin-top: 30px;;
@@ -290,7 +314,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Baloo', sans-serif;
   font-weight: 700;
   border-color: $fluor;
-  color: #fff;
+  color: $text-color;
   box-shadow: 0 0 40px 40px $fluor inset, 0 0 0 0 $fluor;
   transition: all 150ms ease-in-out;
   &:hover {
@@ -343,9 +367,25 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
+.general-bouttons.profile {
+  margin: 0;
+  justify-content: center;
+}
+
+  .general-bouttons.profile button{
+   margin-top: 0;
+   margin-bottom: 10px
+  }
+
+.profilepic {
+  padding: 20px;
+}
+
 //////////////////////////////////////////////////////
 
 // Facecard partial
+
+
 .picframe img {
   width: 100px;
   border-radius: 10%;
