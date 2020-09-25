@@ -28,9 +28,19 @@
       <input name="location" type="text" class="form-control" id="location-sarao-input">
     </div>
 
-    <div class="list-group">
+           <div class="form-group">
+          <label for="character-plus-picker">Amigos</label>     
+        <div class="character-picker character-plus-picker">
+            {{#each this.friends}}
+              {{>facecard}}
+            {{/each}}
+        </div>
+        </div>
+
+
+    <div class="list-group hidden">
       <label for="userList">Miembros</label>
-      <select id="userList" name="userList" multiple>
+      <select id="userList" name="userList" class="form-control character-plus-form" multiple>
         <option value="{{id}}">{{username}}</option>
         {{#each this.friends}}
         <option value="{{id}}">{{username}}</option>
@@ -54,3 +64,5 @@
 
   </form>
 </main>
+<script src="/javascripts/facepicker.js"></script>
+<script src="/javascripts/new.sarao.picker.js"></script>
