@@ -21,8 +21,8 @@
                          {{> facecard}}
                     {{/each}}
                 </ul>
-                <p><a href="/event/countme/addplus?eventId={{event.id}}">+</a><a
-                        href="/event/countme/retireplus?eventId={{event.id}}">-</a></p>
+                <p><a href="/event/countme/addplus?eventId={{event.id}}"><i class="fas fa-plus-circle"></i></a><a
+                        href="/event/countme/retireplus?eventId={{event.id}}"><i class="fas fa-minus-circle"></i></a></p>
             </div>
             <div class="karmaMinus">
                 <h6>Karma -: {{event.karmaMinus}}</h6>
@@ -32,8 +32,8 @@
                         {{> facecard}}
                     {{/each}}
                 </ul>
-                <p> <a href="/event/countme/addminus?eventId={{event.id}}">+</a><a
-                        href="/event/countme/retireminus?eventId={{event.id}}">-</a></p>
+                <p> <a href="/event/countme/addminus?eventId={{event.id}}"><i class="fas fa-plus-circle"></i></a><a
+                        href="/event/countme/retireminus?eventId={{event.id}}"><i class="fas fa-minus-circle"></i></a></p>
             </div>
             <div class="general-bouttons">
                 {{#if canEdit}}

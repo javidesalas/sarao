@@ -13,7 +13,7 @@ const eventSchema = new Schema({
     },
     image: {
         type: String,
-        default: 'https://vignette.wikia.nocookie.net/rickandmorty/images/e/e3/S1e10_jerry_in_ricks_room.png/revision/latest/scale-to-width-down/220?cb=20160911024947'
+        default: 'https://vignette.wikia.nocookie.net/rickandmorty/images/f/f1/S4e1_2019-11-13-12h56m54s682.png'
     },
     description: String,
     startDate: { type: Date, required: true, default: new Date },

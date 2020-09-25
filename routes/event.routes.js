@@ -28,7 +28,7 @@ router.post('/new', (req, res) => {
     const dateString = new Date(startDate).toLocaleDateString('es-ES', { weekday: "short", year: "2-digit", month: "2-digit", day: "2-digit" })
     const timeString = new Date(startDate).toLocaleTimeString('es-ES', { hour: "2-digit", minute: "2-digit" })
 
-    Event.create({ name, owner, sarao, image, description, startDate, dateString, timeString, duration, location, karmaPlus, karmaMinus, userPlus, userMinus })
+    Event.create({ name, owner, sarao, description, startDate, dateString, timeString, duration, location, karmaPlus, karmaMinus, userPlus, userMinus })
         .then(() => res.redirect('/'))
         .catch(err => console.log('Waddaflurb Morty!!', err))
 })
@@ -52,7 +52,7 @@ router.get('/details/:id', actUser, isLoggedIn, (req, res) => {
         .then(event => {
             //creo una variable para mostrar o no el botón de edición si es el propietario (y proximamente si es admin)
             let canEdit = (event.owner.id === req.user.id) ? true : false
-            caneEdit = event.finished ? false : true
+            canEdit = event.finished ? false : true
             console.log(canEdit)
             res.render('event/detail', { event, activeSarao, canEdit })
         })

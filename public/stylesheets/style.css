@@ -255,26 +255,19 @@ label {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  box-sizing: border-box;
   appearance: none;
-  background-color: transparent;
-  border: 2px solid;
+  background-color: #003200;
   cursor: pointer;
   display: flex;
   align-self: center;
-  font-size: 30px;
+  font-size: 3em;
   font-weight: 100;
-  line-height: 1;
   margin: 20px;
-  padding: 6px 13px;
   text-decoration: none;
   text-align: center;
-  text-transform: uppercase;
   font-family: 'Baloo', sans-serif;
   font-weight: 700;
-  border-color: #a1ff0a;
-  color: #f7faf6;
-  box-shadow: 0 0 40px 40px #a1ff0a inset, 0 0 0 0 #a1ff0a;
+  color: #a1ff0a;
   transition: all 150ms ease-in-out; }
   .event-card p a:hover {
     box-shadow: 0 0 10px 0 #a1ff0a inset, 0 0 10px 4px #a1ff0a; }
